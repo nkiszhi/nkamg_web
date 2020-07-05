@@ -12,10 +12,9 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 import json
 import pandas as pd
-from GetData import get_latest_data, get_latest_malware_data, get_latest_benign_data, get_latest_date, get_latest_market, get_latest_malware_date, get_latest_benign_date, get_samples_class, get_samples_filetype, get_malware_json_report, get_json_positives_report, get_samples_count
 
 #HOST_IP = "60.205.204.64"
-HOST_IP = "172.17.112.126"
+HOST_IP = "0.0.0.0"
 PORT = 5000
 
 app = Flask(__name__)
@@ -73,7 +72,13 @@ def search_data():
     print(8888888)
     j_df = pd.read_csv("jsoninfo.csv")
     j_df["sha256"]=j_df["sha256"].astype("str")
-    df2 = df[j_df.sha256 == T]
+    df2 = j_df[j_df.sha256 == T]
+    if df2.empty:
+        labels = [T]
+        content = ["病毒库没有此sha256数据"]
+        jlabels = [T]
+        jcontent = ["病毒库没有此json数据"]
+        return jsonify({"labels":labels,"content":content,"jlabels":jlabels,"jcontent":jcontent})
     jlabels = list(df2.columns.values)
     print(type(jlabels))
     print(jlabels)
@@ -89,46 +94,52 @@ def search_data():
     return jsonify({"labels":labels,"contents":content,"jlabels":jlabels,"jcontents":jcontent})
 
 def get_chart1_data():
-    df = get_latest_data()
-    df1 = get_latest_malware_data()
-    df2 = get_latest_benign_data()
-    result = df.merge(df1, how='left',on="apk_size")
-    result1 = result.merge(df2,how='left',on='apk_size')
-    #print(result1)
-    chart1_data_list = list(result1["apk_size"])
-    chart1_city_list = list(result1["count"])
+    df = pd.read_csv('./csv/size.csv')
+    listBins = [0, 5, 10, 15, 20, 25, 30, 35, 10000]
+    listLabels = ['0-5','5-10','10-15','15-20','20-25','25-30','30-35','35以上']
+    df['apk_size'] = pd.cut(df['apk_size'], bins=listBins, labels=listLabels, include_lowest=True)
+    all_ = df.groupby(df['apk_size'])['all'].sum()
+    malware = df.groupby(df['apk_size'])['malware'].sum()
+    benign = df.groupby(df['apk_size'])['benign'].sum()
+    print(8888)
+    apk_size = pd.DataFrame({'all':all_,"malware":malware,"benign":benign})
+    apk_size.reset_index(inplace=True)
+    print(apk_size)
+    chart1_data_list = list(apk_size["apk_size"])
+    chart1_city_list = list(apk_size["all"])
     chart1_info = {}
     a = ['大小']
     b = ['全部']
     c = ['恶意']
     d = ['良性']
     chart1_info['x_name'] = a+ chart1_data_list
-    chart1_confirm_list = b + list(result1['count'])
-    chart1_suspect_list = c + list(result1['m_count'])
-    chart1_heal_list = d + list(result1['b_count'])
+    chart1_confirm_list = b + list(apk_size['all'])
+    chart1_suspect_list = c + list(apk_size['malware'])
+    chart1_heal_list = d + list(df['benign'])
     chart1_info['confirm'] = chart1_confirm_list
     chart1_info['suspect'] = chart1_suspect_list
     chart1_info['heal'] = chart1_heal_list
-    print(777777)
     #print(chart1_info)
     return chart1_info
 
 
 def get_chart2_data():
-    df = get_latest_date()
-    chart2_info = {}
-    chart2_date_list = list(df["dex_date"])
-    chart2_confirm_list = list(df["count"])
-    chart2_info['x_name'] = chart2_date_list
-    chart2_info['data'] = chart2_confirm_list
-    return chart2_info
-
-
+    chart2_dict = {}
+    df = pd.read_csv('./csv/vendors.csv')
+    l1 = list(df["company"])
+    l2 = list(df["count"])
+    chart2_dict = dict(zip(l1,l2))
+    chart2_data_list = sorted(chart2_dict.items(), key=lambda x: x[1], reverse=False)
+    chart2_city_list = [x[0] for x in chart2_data_list[:5]]
+    chart2_1_info = {}
+    chart2_1_info['x_name'] = chart2_city_list
+    chart2_1_info['data'] = chart2_data_list[:5]
+    return chart2_1_info
 
 def get_chart3_1_data():
     chart3_1_list = []
-    df = get_samples_class()
-    chart3_class_list = list(df["fileclass"])
+    df = pd.read_csv('./csv/count.csv')
+    chart3_class_list = list(df["vt_class"])
     chart3_confirm_list = list(df["count"])
     confirm = {'value': chart3_confirm_list[0], 'name': "良性"}
     dead = {'value': chart3_confirm_list[1], 'name': "恶意"}
@@ -141,7 +152,7 @@ def get_chart3_1_data():
 
 def get_chart3_2_data():
     chart3_2_list = []
-    df = get_latest_market()
+    df = pd.read_csv('./csv/market.csv')
     chart3_class_list = list(df["markets"])
     chart3_confirm_list = list(df["count"])
     for i in range(len(chart3_class_list)):
@@ -152,7 +163,7 @@ def get_chart3_2_data():
 
 def get_chart3_3_data():
     chart3_3_list = []
-    df = get_samples_filetype()
+    df = pd.read_csv('./csv/type.csv')
     chart3_class_list = list(df["filetype"])
     chart3_confirm_list =list(df['count'])
     for i in range(len(chart3_class_list)):
@@ -161,18 +172,15 @@ def get_chart3_3_data():
     return chart3_3_list
 
 def get_chart4_data():
-    df = get_latest_date()
-    df1 = get_latest_malware_date()
-    df2 = get_latest_benign_date()
-    result = df.merge(df1, how='left',on="dex_date")
-    result1 = result.merge(df2,how='left',on='dex_date')
-    result1=result1.fillna(0)
+    df = pd.read_csv('./csv/time.csv')
+    df = df.loc[(df['date']>2012)&(df['date']<2021)]
+    df = df.fillna(0)
     chart4_info = {}
-    print(result1)
-    chart4_date_list = list(result1['dex_date'])
-    chart4_confirm_list = list(result1['count'])
-    chart4_suspect_list = list(result1['m_count'])
-    chart4_heal_list = list(result1['b_count'])
+    print(df)
+    chart4_date_list = list(df['date'])
+    chart4_confirm_list = list(df['all'])
+    chart4_suspect_list = list(df['malware'])
+    chart4_heal_list = list(df['benign'])
     chart4_info['x_name'] = chart4_date_list
     chart4_info['confirm'] = chart4_confirm_list
     chart4_info['suspect'] = chart4_suspect_list
@@ -180,7 +188,7 @@ def get_chart4_data():
     return chart4_info
 
 def get_chart5_data():
-    df = get_json_positives_report()
+    df = pd.read_csv('./csv/positives.csv')
     chart5_data_list = list(df['sha256'].apply(lambda x:x[:6]).tolist())
     chart5_city_list = list(df["positives"])
     chart5_info = {}
@@ -190,7 +198,7 @@ def get_chart5_data():
 
 def get_chart5_1_data():
     chart5_dict = {}
-    df = get_malware_json_report()
+    df = pd.read_csv('./csv/vendors.csv')
     l1 = list(df["company"])
     l2 = list(df["count"])
     chart5_dict = dict(zip(l1,l2))
@@ -201,18 +209,14 @@ def get_chart5_1_data():
     chart5_1_info['data'] = chart5_data_list[:5]
     return chart5_1_info
 
-
-def get_chart_map_data():
-    map_chart_list = []
-    map_data = json.loads(rd.get('ncovcity_data'))
-    for data in map_data['newslist']:
-        map_chart_dict = {}
-        map_chart_dict['name'] = data['provinceShortName']
-        map_chart_dict['value'] = data['confirmedCount']
-        map_chart_list.append(map_chart_dict)
-    print(222222)
-    #print(map_chart_list)
-    return map_chart_list
+@app.route('/get_ncov_totalcount')
+def ncov_totalcount():
+    df = pd.read_csv('./csv/number.csv') 
+    confirmedCount = df.iloc[0,2]
+    print(confirmedCount)
+    suspectedCount = df.iloc[0,1]
+    print(suspectedCount)
+    return jsonify({'confirmedCount': confirmedCount, 'suspectedCount': suspectedCount})
 
 @app.route('/get_chart_data')
 def get_chart_data():
