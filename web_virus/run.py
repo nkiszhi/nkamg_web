@@ -12,7 +12,9 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 import json
 import pandas as pd
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 #HOST_IP = "60.205.204.64"
 HOST_IP = "0.0.0.0"
 PORT = 5000
@@ -49,7 +51,7 @@ def search_data():
     T = bytes.decode(S)
     print(999999)
     print(T)
-    df = pd.read_csv("0000_latest.csv")
+    df = pd.read_csv("./data/local_latest.csv")
     df["sha256"]=df["sha256"].astype("str")    
     df1 = df[df.sha256 == T]
     if df1.empty:
@@ -70,12 +72,10 @@ def search_data():
     print(type(content))
     print(content)
     print(8888888)
-    j_df = pd.read_csv("jsoninfo.csv")
+    j_df = pd.read_csv("./data/local_jsoninfo.csv")
     j_df["sha256"]=j_df["sha256"].astype("str")
     df2 = j_df[j_df.sha256 == T]
     if df2.empty:
-        labels = [T]
-        content = ["病毒库没有此sha256数据"]
         jlabels = [T]
         jcontent = ["病毒库没有此json数据"]
         return jsonify({"labels":labels,"content":content,"jlabels":jlabels,"jcontent":jcontent})
@@ -94,7 +94,7 @@ def search_data():
     return jsonify({"labels":labels,"contents":content,"jlabels":jlabels,"jcontents":jcontent})
 
 def get_chart1_data():
-    df = pd.read_csv('./csv/size.csv')
+    df = pd.read_csv('./data/size.csv')
     listBins = [0, 5, 10, 15, 20, 25, 30, 35, 10000]
     listLabels = ['0-5','5-10','10-15','15-20','20-25','25-30','30-35','35以上']
     df['apk_size'] = pd.cut(df['apk_size'], bins=listBins, labels=listLabels, include_lowest=True)
@@ -125,7 +125,7 @@ def get_chart1_data():
 
 def get_chart2_data():
     chart2_dict = {}
-    df = pd.read_csv('./csv/vendors.csv')
+    df = pd.read_csv('./data/vendors.csv')
     l1 = list(df["company"])
     l2 = list(df["count"])
     chart2_dict = dict(zip(l1,l2))
@@ -138,7 +138,7 @@ def get_chart2_data():
 
 def get_chart3_1_data():
     chart3_1_list = []
-    df = pd.read_csv('./csv/count.csv')
+    df = pd.read_csv('./data/count.csv')
     chart3_class_list = list(df["vt_class"])
     chart3_confirm_list = list(df["count"])
     confirm = {'value': chart3_confirm_list[0], 'name': "良性"}
@@ -152,9 +152,9 @@ def get_chart3_1_data():
 
 def get_chart3_2_data():
     chart3_2_list = []
-    df = pd.read_csv('./csv/market.csv')
-    chart3_class_list = list(df["markets"])
-    chart3_confirm_list = list(df["count"])
+    df = pd.read_csv('./data/market.csv')
+    chart3_class_list = list(df["markets"])[:5]
+    chart3_confirm_list = list(df["count"])[:5]
     for i in range(len(chart3_class_list)):
         confirm = {'value': chart3_confirm_list[i], 'name': chart3_class_list[i]}
         chart3_2_list.append(confirm)
@@ -163,7 +163,7 @@ def get_chart3_2_data():
 
 def get_chart3_3_data():
     chart3_3_list = []
-    df = pd.read_csv('./csv/type.csv')
+    df = pd.read_csv('./data/type.csv')
     chart3_class_list = list(df["filetype"])
     chart3_confirm_list =list(df['count'])
     for i in range(len(chart3_class_list)):
@@ -172,8 +172,8 @@ def get_chart3_3_data():
     return chart3_3_list
 
 def get_chart4_data():
-    df = pd.read_csv('./csv/time.csv')
-    df = df.loc[(df['date']>2012)&(df['date']<2021)]
+    df = pd.read_csv('./data/time.csv')
+    df = df.loc[(df['date']>2010)&(df['date']<2021)]
     df = df.fillna(0)
     chart4_info = {}
     print(df)
@@ -188,7 +188,7 @@ def get_chart4_data():
     return chart4_info
 
 def get_chart5_data():
-    df = pd.read_csv('./csv/positives.csv')
+    df = pd.read_csv('./data/positives.csv')
     chart5_data_list = list(df['sha256'].apply(lambda x:x[:6]).tolist())
     chart5_city_list = list(df["positives"])
     chart5_info = {}
@@ -198,7 +198,7 @@ def get_chart5_data():
 
 def get_chart5_1_data():
     chart5_dict = {}
-    df = pd.read_csv('./csv/vendors.csv')
+    df = pd.read_csv('./data/vendors.csv')
     l1 = list(df["company"])
     l2 = list(df["count"])
     chart5_dict = dict(zip(l1,l2))
@@ -211,8 +211,9 @@ def get_chart5_1_data():
 
 @app.route('/get_ncov_totalcount')
 def ncov_totalcount():
-    df = pd.read_csv('./csv/number.csv') 
+    df = pd.read_csv('./data/number.csv') 
     confirmedCount = df.iloc[0,2]
+    print(989898)
     print(confirmedCount)
     suspectedCount = df.iloc[0,1]
     print(suspectedCount)
