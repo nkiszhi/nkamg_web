@@ -13,8 +13,10 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for
 import json
 import pandas as pd
 import sys
+from importlib import reload
+
 reload(sys)
-sys.setdefaultencoding('utf8')
+#sys.setdefaultencoding('utf8')
 #HOST_IP = "60.205.204.64"
 HOST_IP = "0.0.0.0"
 PORT = 5000
