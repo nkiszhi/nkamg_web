@@ -124,17 +124,34 @@ def get_chart1_data():
 
 
 def get_chart2_data():
-    chart2_dict = {}
-    df = pd.read_csv('./data/vendors.csv')
-    l1 = list(df["company"])
-    l2 = list(df["count"])
-    chart2_dict = dict(zip(l1,l2))
-    chart2_data_list = sorted(chart2_dict.items(), key=lambda x: x[1], reverse=False)
-    chart2_city_list = [x[0] for x in chart2_data_list[:5]]
-    chart2_1_info = {}
-    chart2_1_info['x_name'] = chart2_city_list
-    chart2_1_info['data'] = chart2_data_list[:5]
-    return chart2_1_info
+    df = pd.read_csv('./data/dex_size.csv')
+    listBins = [0, 5, 10, 15, 20, 25, 30, 35, 10000]
+    listLabels = ['0-5','5-10','10-15','15-20','20-25','25-30','30-35','35以上']
+    df['dex_size'] = pd.cut(df['dex_size'], bins=listBins, labels=listLabels, include_lowest=True)
+    all_ = df.groupby(df['dex_size'])['all'].sum()
+    malware = df.groupby(df['dex_size'])['malware'].sum()
+    benign = df.groupby(df['dex_size'])['benign'].sum()
+    print(8888)
+    dex_size = pd.DataFrame({'all':all_,"malware":malware,"benign":benign})
+    dex_size.reset_index(inplace=True)
+    print(dex_size)
+    chart2_data_list = list(dex_size["dex_size"])
+    chart2_city_list = list(dex_size["all"])
+    chart2_info = {}
+    a = ['大小']
+    b = ['全部']
+    c = ['恶意']
+    d = ['良性']
+    chart2_info['x_name'] = a+ chart2_data_list
+    chart2_confirm_list = b + list(dex_size['all'])
+    chart2_suspect_list = c + list(dex_size['malware'])
+    chart2_heal_list = d + list(df['benign'])
+    chart2_info['confirm'] = chart2_confirm_list
+    chart2_info['suspect'] = chart2_suspect_list
+    chart2_info['heal'] = chart2_heal_list
+    #print(chart2_info)
+    return chart2_info
+
 
 def get_chart3_1_data():
     chart3_1_list = []
@@ -188,34 +205,51 @@ def get_chart4_data():
     return chart4_info
 
 def get_chart5_data():
-    df = pd.read_csv('./data/positives.csv')
-    chart5_data_list = list(df['sha256'].apply(lambda x:x[:6]).tolist())
-    chart5_city_list = list(df["positives"])
+    df = pd.read_csv('./data/vt_time.csv')
+    df = df.loc[(df['vt_date']>2010)&(df['vt_date']<2021)]
+    df = df.fillna(0)
     chart5_info = {}
-    chart5_info['x_name'] = chart5_data_list[:5]
-    chart5_info['data'] = chart5_city_list[:5]
+    print(df)
+    chart5_date_list = list(df['vt_date'])
+    chart5_confirm_list = list(df['all'])
+    chart5_suspect_list = list(df['malware'])
+    chart5_heal_list = list(df['benign'])
+    chart5_info['x_name'] = chart5_date_list
+    chart5_info['confirm'] = chart5_confirm_list
+    chart5_info['suspect'] = chart5_suspect_list
+    chart5_info['heal'] = chart5_heal_list
     return chart5_info
 
+
 def get_chart5_1_data():
-    chart5_dict = {}
+    df = pd.read_csv('./data/positives.csv')
+    chart5_1_data_list = list(df['sha256'].apply(lambda x:x[:6]).tolist())
+    chart5_1_city_list = list(df["positives"])
+    chart5_1_info = {}
+    chart5_1_info['x_name'] = chart5_1_data_list[:5]
+    chart5_1_info['data'] = chart5_1_city_list[:5]
+    return chart5_1_info
+
+def get_chart6_data():
+    chart6_dict = {}
     df = pd.read_csv('./data/vendors.csv')
     l1 = list(df["company"])
     l2 = list(df["count"])
-    chart5_dict = dict(zip(l1,l2))
-    chart5_data_list = sorted(chart5_dict.items(), key=lambda x: x[1], reverse=True)
-    chart5_city_list = [x[0] for x in chart5_data_list[:5]]
-    chart5_1_info = {}
-    chart5_1_info['x_name'] = chart5_city_list
-    chart5_1_info['data'] = chart5_data_list[:5]
-    return chart5_1_info
+    chart6_dict = dict(zip(l1,l2))
+    chart6_data_list = sorted(chart6_dict.items(), key=lambda x: x[1], reverse=True)
+    chart6_city_list = [x[0] for x in chart6_data_list]
+    chart6_info = {}
+    chart6_info['x_name'] = chart6_city_list
+    chart6_info['data'] = chart6_data_list
+    return chart6_info
 
 @app.route('/get_ncov_totalcount')
 def ncov_totalcount():
-    df = pd.read_csv('./data/number.csv') 
+    df = pd.read_csv('./data/count.csv') 
     confirmedCount = df.iloc[0,2]
     print(989898)
     print(confirmedCount)
-    suspectedCount = df.iloc[0,1]
+    suspectedCount = df.iloc[1,2]
     print(suspectedCount)
     return jsonify({'confirmedCount': confirmedCount, 'suspectedCount': suspectedCount})
 
@@ -226,6 +260,7 @@ def get_chart_data():
     chart2_data = get_chart2_data()
     chart4_data = get_chart4_data()
     chart5_data = get_chart5_data()
+    chart6_data = get_chart6_data()
     chart5_1_data = get_chart5_1_data()
     chart3_1_data = get_chart3_1_data()
     chart3_2_data = get_chart3_2_data()
@@ -238,6 +273,7 @@ def get_chart_data():
     chart_info['chart3_1'] = chart3_1_data
     chart_info['chart3_2'] = chart3_2_data
     chart_info['chart3_3'] = chart3_3_data
+    chart_info['chart6'] = chart6_data
     print(33333)
     #print(chart_info)
     return jsonify(chart_info)
