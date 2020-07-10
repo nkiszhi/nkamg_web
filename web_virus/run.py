@@ -240,8 +240,10 @@ def get_chart_data():
     chart_info['chart3_1'] = chart3_1_data
     chart_info['chart3_2'] = chart3_2_data
     chart_info['chart3_3'] = chart3_3_data
-    print(33333)
-    #print(chart_info)
+    # print(33333)
+    # print(chart_info)
+    # print(type(chart_info))
+    # a = jsonify(chart_info)
     return jsonify(chart_info)
 
 
