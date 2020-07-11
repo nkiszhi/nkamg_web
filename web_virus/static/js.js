@@ -85,7 +85,9 @@ function echarts_1(data) {
             },
           }],
           yAxis: [
-             {gridIndex: 0,
+             {name: '(个数)',
+              nameTextStyle: {color:"red"},
+              gridIndex: 0,
               type: 'value',
         axisLabel: {
               formatter: function(value,index){
@@ -118,7 +120,7 @@ function echarts_1(data) {
            ],
           grid: {
               left: '0%',
-		top:'10px',
+		top:'22%',
                 right: '12%',
              bottom: '4%',
             containLabel: true
@@ -199,7 +201,9 @@ function echarts_2(data) {
             },
           }],
           yAxis: [
-             {gridIndex: 0,
+             {name: '(个数)',
+              nameTextStyle: {color:"red"},
+              gridIndex: 0,
               type: 'value',
         axisLabel: {
            //formatter: '{value} %'
@@ -233,7 +237,7 @@ function echarts_2(data) {
            ],
           grid: {
               left: '0%',
-		top:'10px',
+		top:'22%',
                 right: '12%',
              bottom: '4%',
             containLabel: true
@@ -276,13 +280,15 @@ function echarts_5(data) {
     },
     grid: {
         left: '0%',
-		top: '30',
-        right: '20',
+	top: '22%',
+        right: '12%',
         bottom: '10',
         containLabel: true
     },
 
     xAxis: [{
+        name:'(年)',
+              nameTextStyle: {color:"red"},
         type: 'category',
         boundaryGap: false,
 axisLabel:  {   
@@ -313,6 +319,8 @@ axisLabel:  {
     }],
 
     yAxis: [{
+        name: '(个数)',
+        nameTextStyle: {color:"red"},
         type: 'value',
         axisTick: {show: false},
         axisLine: {
@@ -475,12 +483,14 @@ function echarts_5_1(data) {
 
     grid: {
         left: '0%',
-		top:'10px',
-        right: '0%',
+		top:'22%',
+        right: '70px',
         bottom: '2%',
        containLabel: true
     },
     xAxis: [{
+        name:'(sha256)',
+              nameTextStyle: {color:"red"},
         type: 'category',
       		//data: ['浙江', '上海', '江苏', '广东', '北京', '深圳', '安徽', '四川'],
         data: data['x_name'],
@@ -508,6 +518,8 @@ function echarts_5_1(data) {
             },
     }],
     yAxis: [{
+        name: '(个数)',
+              nameTextStyle: {color:"red"},
         type: 'value',
         axisLabel: {
            //formatter: '{value} %'
@@ -581,13 +593,15 @@ function echarts_4(data) {
     },
     grid: {
         left: '0%',
-		top: '30',
-        right: '20',
+		top: '22%',
+        right: '12%',
         bottom: '10',
         containLabel: true
     },
 
     xAxis: [{
+        name:'(年)',
+              nameTextStyle: {color:"red"},
         type: 'category',
         boundaryGap: false,
 axisLabel:  {   
@@ -618,6 +632,8 @@ axisLabel:  {
     }],
 
     yAxis: [{
+        name: '(个数)',
+              nameTextStyle: {color:"red"},
         type: 'value',
         axisTick: {show: false},
         axisLine: {
@@ -779,13 +795,15 @@ function echarts_6(data) {
     },
 
     grid: {
-        left: '0%',
-		top:'10px',
-        right: '0%',
+        left: '10px',
+		top:'22%',
+        right: '70px',
         bottom: '2%',
        containLabel: true
     },
     xAxis: [{
+        name:'(公司)',
+              nameTextStyle: {color:"red"},
         type: 'category',
       		//data: ['浙江', '上海', '江苏', '广东', '北京', '深圳', '安徽', '四川'],
         data: data['x_name'],
@@ -813,6 +831,8 @@ function echarts_6(data) {
             },
     }],
     yAxis: [{
+        name: '(个数)',
+              nameTextStyle: {color:"red"},
         type: 'value',
         axisLabel: {
            //formatter: '{value} %'

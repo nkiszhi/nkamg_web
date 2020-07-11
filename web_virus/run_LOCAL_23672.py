@@ -13,10 +13,8 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for
 import json
 import pandas as pd
 import sys
-#from importlib import reload
-
-#reload(sys)
-#sys.setdefaultencoding('utf8')
+reload(sys)
+sys.setdefaultencoding('utf8')
 #HOST_IP = "60.205.204.64"
 HOST_IP = "0.0.0.0"
 PORT = 5000
@@ -248,7 +246,6 @@ def get_chart6_data():
 @app.route('/get_ncov_totalcount')
 def ncov_totalcount():
     df = pd.read_csv('./data/count.csv') 
-    df["count"]=df["count"].astype("str")
     confirmedCount = df.iloc[0,2]
     print(989898)
     print(confirmedCount)
@@ -279,10 +276,6 @@ def get_chart_data():
     chart_info['chart6'] = chart6_data
     print(33333)
     #print(chart_info)
-    # print(33333)
-    # print(chart_info)
-    # print(type(chart_info))
-    # a = jsonify(chart_info)
     return jsonify(chart_info)
 
 
