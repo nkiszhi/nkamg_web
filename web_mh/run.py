@@ -18,7 +18,7 @@ reload(sys)
 #sys.setdefaultencoding('utf8')
 #HOST_IP = "60.205.204.64"
 HOST_IP = "0.0.0.0"
-PORT = 5001
+PORT = 5000
 
 app = Flask(__name__)
 
@@ -137,6 +137,7 @@ def get_link_data():
         lss.append(dic)
     ls['key'] = lss
     return jsonify(ls)
+
 
 
 if __name__ == '__main__':
