@@ -1,4 +1,4 @@
-<!--当前所用版本，2020.7.10-->
+<!--当前所用版本，2020.7.16-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,9 +12,10 @@
 
 </head>
 <body>
+
     <!--中国地图-->
     <div id="china_map" style="width: 100%;height: 500px;"></div>
-	<!-- 为 ECharts 准备一个具备大小（宽高）的 容器 //padding:0 0 0 973px-->
+	<!-- ip关系图-->
 	<div id="chart1" style="width: 100%;height: 1000px;"></div>
     <!-- ip访问数量-->
     <div id="chart3" style="width: 100%;height: 700px;padding: 70px 0 0 0"></div>
@@ -26,6 +27,20 @@
     <div id="chart5" style="width: 100%;height: 700px;padding: 70px 0 0 0 "></div>
         <!-- ip流量-->
     <div id="chart4" style="width: 100%;height: 700px;padding: 70px  0 0 0"></div>
+
+    <!-- ip扫描230 -->
+    <div id="ip_scan_230" style="width: 100%;height: 700px;padding: 70px  0 0 0"></div>
+    <!-- ip扫描37 -->
+    <div id="ip_scan_37" style="width: 100%;height: 700px;padding: 70px  0 0 0"></div>
+    <!-- knn算法-->
+    <div id="knn" style="width: 100%;height: 1000px;"></div>
+    <!-- pca算法-->
+    <div id="pca" style="width: 100%;height: 1000px;"></div>
+    <!-- LOF算法-->
+    <div id="lof" style="width: 100%;height: 1000px;"></div>
+    <!-- VAE算法-->
+    <div id="vae" style="width: 100%;height: 1000px;"></div>
+
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
@@ -38,6 +53,7 @@
 </body>
 </html>
 
+<!--中国地图-->
  <script type="text/javascript">
 var dom = document.getElementById("china_map");
 var china_map = echarts.init(dom);
@@ -289,7 +305,7 @@ if (option && typeof option === "object") {
     china_map.setOption(option, true);
 }
 </script>
-
+<!-- ip关系图-->
 <script type="text/javascript">
 	// 基于准备好的容器(这里的容器是id为chart1的div)，初始化echarts实例
 	var chart1 = echarts.init(document.getElementById("chart1"));
@@ -416,9 +432,7 @@ if (option && typeof option === "object") {
 			url: '/get_name',
 			dataType: 'json',
 			success: function (res) {
-				console.log(res['key'])
 				chart1.hideLoading();    //隐藏加载动画
-				var x = res['key']
 				chart1.setOption({        //加载数据图表
 					series: [{
 					// 根据名字对应到相应的系列
@@ -457,7 +471,7 @@ if (option && typeof option === "object") {
         });
     })
 </script>
-
+ <!-- ip访问数量-->
  <script type="text/javascript">
 var dom = document.getElementById("chart3");
 var chart3 = echarts.init(dom);
@@ -568,7 +582,7 @@ if (option && typeof option === "object") {
     window.onresize = chart3.resize;
 }
  </script>
-
+<!-- ip流量-->
 <script type="text/javascript">
 var dom = document.getElementById("chart4");
 var chart4 = echarts.init(dom);
@@ -653,7 +667,7 @@ if (option && typeof option === "object") {
     window.onresize = chart4.resize;
 }
 </script>
-
+<!-- ip公有私有统计-->
 <script type="text/javascript">
 var dom = document.getElementById("chart5");
 var chart5 = echarts.init(dom);
@@ -867,7 +881,7 @@ if (option && typeof option === "object") {
     window.onresize = chart5.resize;
 }
        </script>
-
+<!-- ip公有私有饼图-->
  <script type="text/javascript">
 var dom = document.getElementById("bing1");
 var bing1 = echarts.init(dom);
@@ -1212,7 +1226,7 @@ if (option && typeof option === "object") {
     window.onresize = bing1.resize;
 }
 </script>
-
+<!-- ip访问数量,时间轴-->
 <script type="text/javascript">
 var dom = document.getElementById("chart6");
 var chart6 = echarts.init(dom);
@@ -1547,4 +1561,874 @@ if (option && typeof option === "object") {
     window.onresize = chart6.resize;
 }
        </script>
+<!-- knn算法-->
+<script type="text/javascript">
+var dom = document.getElementById("knn");
+var knn = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "2月16日KNN异常检测结果图",           // 标题文本
+            subtext: '随机抽取1%的数据进行展示',
+            subtextStyle: {
+                top:'2%',
+                fontSize:20,
+            },
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            left:'-20%',
+            top:'3%',
+            bottom: '10%'
 
+
+        },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: 'IP', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:25
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '130px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'安全访问：17449次',
+                    icon:'circle',
+                },
+                {
+                    name:'危险访问：870次',
+                    icon:'circle',
+                },{
+                    name:'可疑IP访问情况(饼状图)',
+                    icon:'circle',
+                },
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+
+        series: [
+            {
+                name:'安全访问：17449次',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'危险访问：870次',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },{
+                name:'可疑IP访问情况(饼状图)',
+                type: 'pie',
+                data:[],
+                position: 'right',
+                radius: "45%",
+                center: ["78%", "50%"],
+                label:{            //饼图图形上的文本标签
+                            normal:{
+                                show:true,
+                                textStyle : {
+                                    //fontWeight : 500 ,
+                                    fontSize : 20    //文字的字体大小
+                                },
+                            }},
+                z:100,
+                itemStyle:{
+                    shadowBlur: 20,
+                    shadowColor: 'rgba(0,0,0,0.5)',
+
+                },
+            }
+        ]
+    };
+
+    knn.setOption(option)
+	window.onresize = knn.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_knn',
+            dataType: 'json',
+            success: function (res) {
+                knn.hideLoading();    //隐藏加载动画
+                knn.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'安全访问：17449次',
+                        data: res['safe'],
+                    },{
+                        name:'危险访问：870次',
+                        data:res['dangerous']
+                    },{
+                        name:'可疑IP访问情况(饼状图)',
+                        data: res['knn_bing']
+                    }
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- pca算法-->
+<script type="text/javascript">
+var dom = document.getElementById("pca");
+var pca = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "2月16日PCA异常检测结果图",           // 标题文本
+            subtext: '随机抽取1%的数据进行展示',
+            subtextStyle: {
+                fontSize:20,
+            },
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            left:'-20%',
+            top:'3%',
+
+
+        },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: 'IP', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:25
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '130px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'安全访问：17390次',
+                    icon:'circle',
+                },
+                {
+                    name:'危险访问：929次',
+                    icon:'circle',
+                },{
+                    name:'可疑IP访问情况(饼状图)',
+                    icon:'circle',
+                },
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+        series: [
+            {
+                name:'安全访问：17390次',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'危险访问：929次',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },{
+                name:'可疑IP访问情况(饼状图)',
+                type: 'pie',
+                data:[],
+                position: 'right',
+                radius: "45%",
+                center: ["78%", "50%"],
+                label:{            //饼图图形上的文本标签
+                            normal:{
+                                show:true,
+                                textStyle : {
+                                    //fontWeight : 500 ,
+                                    fontSize : 20    //文字的字体大小
+                                },
+                            }},
+                z:100,
+                itemStyle:{
+                    shadowBlur: 20,
+                    shadowColor: 'rgba(0,0,0,0.5)',
+
+                },
+            }
+        ]
+    };
+
+    pca.setOption(option)
+	window.onresize = pca.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_pca',
+            dataType: 'json',
+            success: function (res) {
+                pca.hideLoading();    //隐藏加载动画
+                pca.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'安全访问：17390次',
+                        data: res['safe'],
+                    },{
+                        name:'危险访问：929次',
+                        data:res['dangerous']
+                    },{
+                        name:'可疑IP访问情况(饼状图)',
+                        data: res['pca_bing']
+                    }
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- lof算法-->
+<script type="text/javascript">
+var dom = document.getElementById("lof");
+var lof = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "2月16日LOF异常检测结果图",           // 标题文本
+            subtext: '随机抽取1%的数据进行展示',
+            subtextStyle: {
+                fontSize:20,
+            },
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            left:'-20%',
+            top:'3%',
+
+
+        },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: 'IP', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:25
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '130px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'安全访问：17395次',
+                    icon:'circle',
+                },
+                {
+                    name:'危险访问：924次',
+                    icon:'circle',
+                },{
+                    name:'可疑IP访问情况(饼状图)',
+                    icon:'circle',
+                },
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+        series: [
+            {
+                name:'安全访问：17395次',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'危险访问：924次',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },{
+                name:'可疑IP访问情况(饼状图)',
+                type: 'pie',
+                data:[],
+                position: 'right',
+                radius: "45%",
+                center: ["78%", "50%"],
+                label:{            //饼图图形上的文本标签
+                            normal:{
+                                show:true,
+                                textStyle : {
+                                    //fontWeight : 500 ,
+                                    fontSize : 20    //文字的字体大小
+                                },
+                            }},
+                z:100,
+                itemStyle:{
+                    shadowBlur: 20,
+                    shadowColor: 'rgba(0,0,0,0.5)',
+
+                },
+            }
+        ]
+    };
+
+    lof.setOption(option)
+	window.onresize = lof.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_lof',
+            dataType: 'json',
+            success: function (res) {
+                lof.hideLoading();    //隐藏加载动画
+                lof.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'安全访问：17395次',
+                        data: res['safe'],
+                    },{
+                        name:'危险访问：924次',
+                        data:res['dangerous']
+                    },{
+                        name:'可疑IP访问情况(饼状图)',
+                        data: res['pca_bing']
+                    }
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- vae算法-->
+<script type="text/javascript">
+var dom = document.getElementById("vae");
+var vae = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "2月16日VAE异常检测结果图",           // 标题文本
+            subtext: '随机抽取1%的数据进行展示',
+            subtextStyle: {
+                fontSize:20,
+            },
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            left:'-20%',
+            top:'3%',
+
+
+        },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: 'IP', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:25
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '130px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'安全访问：17386次',
+                    icon:'circle',
+                },
+                {
+                    name:'危险访问：933次',
+                    icon:'circle',
+                },{
+                    name:'可疑IP访问情况(饼状图)',
+                    icon:'circle',
+                },
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+        series: [
+            {
+                name:'安全访问：17386次',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'危险访问：933次',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },{
+                name:'可疑IP访问情况(饼状图)',
+                type: 'pie',
+                data:[],
+                position: 'right',
+                radius: "45%",
+                center: ["78%", "50%"],
+                label:{            //饼图图形上的文本标签
+                            normal:{
+                                show:true,
+                                textStyle : {
+                                    //fontWeight : 500 ,
+                                    fontSize : 20    //文字的字体大小
+                                },
+                            }},
+                z:100,
+                itemStyle:{
+                    shadowBlur: 20,
+                    shadowColor: 'rgba(0,0,0,0.5)',
+
+                },
+            }
+        ]
+    };
+
+    vae.setOption(option)
+	window.onresize = vae.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_vae',
+            dataType: 'json',
+            success: function (res) {
+                vae.hideLoading();    //隐藏加载动画
+                vae.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'安全访问：17386次',
+                        data: res['safe'],
+                    },{
+                        name:'危险访问：933次',
+                        data:res['dangerous']
+                    },{
+                        name:'可疑IP访问情况(饼状图)',
+                        data: res['pca_bing']
+                    }
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- ip扫描230 -->
+<script type="text/javascript">
+	// 基于准备好的容器(这里的容器是id为chart1的div)，初始化echarts实例
+	var ip_scan_230 = echarts.init(document.getElementById("ip_scan_230"));
+
+	var	option = {
+		backgroundColor: '#fff',	// 背景颜色
+	    title: {                    // 图表标题
+	        text: "2月16日23:23:54～23:23:55内IP扫描结果",           // 标题文本
+	        left : '3%',                    // 标题距离左侧边距
+	        top : '3%',                     // 标题距顶部边距
+			textStyle : {                       // 标题样式
+				color : '#000',                     // 标题字体颜色
+				fontSize : '40',                    // 标题字体大小
+			}
+	    },
+	    tooltip: {                  // 提示框的配置
+		    textStyle:{fontSize:35},
+	        formatter: function(param) {
+	            if (param.dataType === 'edge') {
+	                return param.data.target;
+	            }
+	            return param.data.name;
+	        }
+	    },
+
+	    legend : { //=========圖表控件 图例
+                    show : true,
+                    orient: 'vertical',  //垂直布局
+                    x: '3%',
+                    y: '100px',  //垂直布局的位置  y: 'center'
+                    textStyle: {
+                        fontSize: 20,
+                    },
+                    data : [],
+                },
+	    series: [{
+		    top:'10%',
+            bottom:'10%',
+		    grid:{
+		    left:'left',
+            },
+	        type: "graph",          // 系列类型:关系图
+	        roam: true,             // 是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
+	        edgeSymbol: ['circle', 'arrow'],
+			edgeSymbolSize: 3,
+			focusNodeAdjacency: true,   // 是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点。[ default: false ]
+            draggable: false,
+			force: {                // 力引导布局相关的配置项，力引导布局是模拟弹簧电荷模型在每两个节点之间添加一个斥力，每条边的两个节点之间添加一个引力，每次迭代节点会在各个斥力和引力的作用下移动位置，多次迭代后节点会静止在一个受力平衡的位置，达到整个模型的能量最小化。
+	                                // 力引导布局的结果有良好的对称性和局部聚合性，也比较美观。
+	            repulsion: 30,            // [ default: 50 ]节点之间的斥力因子(关系对象之间的距离)。支持设置成数组表达斥力的范围，此时不同大小的值会线性映射到不同的斥力。值越大则斥力越大
+	            edgeLength: 10,    // [ default: 30 ]边的两个节点之间的距离(关系对象连接线两端对象的距离,会根据关系对象值得大小来判断距离的大小)，
+	            //layoutAnimation : false        // 这个距离也会受 repulsion。支持设置成数组表达边长的范围，此时不同大小的值会线性映射到不同的长度。值越小则长度越长。如下示例:
+	                                        // 值最大的边长度会趋向于 10，值最小的边长度会趋向于 50      edgeLength: [10, 50]
+	        },
+	        layout: "circular",            // 图的布局。[ default: 'none' ]
+	                                    // 'none' 不采用任何布局，使用节点中提供的 x， y 作为节点的位置。
+	                                    // 'circular' 采用环形布局;'force' 采用力引导布局.
+	        // 标记的图形
+	        //symbol: "path://M19.300,3.300 L253.300,3.300 C262.136,3.300 269.300,10.463 269.300,19.300 L269.300,21.300 C269.300,30.137 262.136,37.300 253.300,37.300 L19.300,37.300 C10.463,37.300 3.300,30.137 3.300,21.300 L3.300,19.300 C3.300,10.463 10.463,3.300 19.300,3.300 Z",
+	        symbol: 'circle',
+	        itemStyle: {
+                    normal: {
+                        borderColor: '#fff',
+                        borderWidth: 1,
+                        shadowBlur: 10,
+                        shadowColor: 'rgba(0, 0, 0, 0.3)',
+
+                    }
+                },
+	        label: {                // 关系对象上的标签
+	            position: 'right',
+                    formatter: '{b}'
+	        },
+			lineStyle: {
+                    color: 'source',
+                    curveness: 0.2
+                },
+	        emphasis: {
+                    lineStyle: {
+                        width: 10
+                    }
+                },
+	        data: [],
+	        categories: [],
+	        links: [],
+	    }],
+	    animationEasingUpdate: "quinticInOut",          // 数据更新动画的缓动效果。[ default: cubicOut ]    "quinticInOut"
+	    animationDurationUpdate: 100                    // 数据更新动画的时长。[ default: 300 ]
+	};
+	// 使用刚指定的配置项和数据显示图表
+	ip_scan_230.setOption(option)
+	window.onresize = ip_scan_230.resize;
+	$(function () {
+		$.ajax({
+			async:false,
+			type: 'get',
+			url: '/get_scan_230',
+			dataType: 'json',
+			success: function (res) {
+				ip_scan_230.hideLoading();    //隐藏加载动画
+				ip_scan_230.setOption({        //加载数据图表
+
+					series: [{
+					// 根据名字对应到相应的系列
+                        categories: res['cat'],
+						data: res['key'],
+                        links: res['link'],
+					}],
+                    legend: [{
+					    data: res['cat'],
+                    }]
+				});
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(XMLHttpRequest.status);
+				alert(XMLHttpRequest.readyState);
+				alert(textStatus);
+        	},
+		});
+	})
+</script>
+<!-- ip扫描37 -->
+<script type="text/javascript">
+	// 基于准备好的容器(这里的容器是id为chart1的div)，初始化echarts实例
+	var ip_scan_37 = echarts.init(document.getElementById("ip_scan_37"));
+
+	var	option = {
+		backgroundColor: '#fff',	// 背景颜色
+	    title: {                    // 图表标题
+	        text: "2月16日19:53:47～19:53:48内IP扫描结果",           // 标题文本
+	        left : '3%',                    // 标题距离左侧边距
+	        top : '3%',                     // 标题距顶部边距
+			textStyle : {                       // 标题样式
+				color : '#000',                     // 标题字体颜色
+				fontSize : '40',                    // 标题字体大小
+			}
+	    },
+	    tooltip: {                  // 提示框的配置
+		    textStyle:{fontSize:35},
+	        formatter: function(param) {
+	            if (param.dataType === 'edge') {
+	                return param.data.target;
+	            }
+	            return param.data.name;
+	        }
+	    },
+
+	    legend : { //=========圖表控件 图例
+                    show : true,
+                    orient: 'vertical',  //垂直布局
+                    x: '3%',
+                    y: '100px',  //垂直布局的位置  y: 'center'
+                    textStyle: {
+                        fontSize: 20,
+                    },
+                    data : [],
+                },
+	    series: [{
+		    top:'10%',
+            bottom:'10%',
+		    grid:{
+		    left:'left',
+            },
+	        type: "graph",          // 系列类型:关系图
+	        roam: true,             // 是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
+	        edgeSymbol: ['circle', 'arrow'],
+			edgeSymbolSize: 3,
+			focusNodeAdjacency: true,   // 是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点。[ default: false ]
+            draggable: false,
+			force: {                // 力引导布局相关的配置项，力引导布局是模拟弹簧电荷模型在每两个节点之间添加一个斥力，每条边的两个节点之间添加一个引力，每次迭代节点会在各个斥力和引力的作用下移动位置，多次迭代后节点会静止在一个受力平衡的位置，达到整个模型的能量最小化。
+	                                // 力引导布局的结果有良好的对称性和局部聚合性，也比较美观。
+	            repulsion: 30,            // [ default: 50 ]节点之间的斥力因子(关系对象之间的距离)。支持设置成数组表达斥力的范围，此时不同大小的值会线性映射到不同的斥力。值越大则斥力越大
+	            edgeLength: 10,    // [ default: 30 ]边的两个节点之间的距离(关系对象连接线两端对象的距离,会根据关系对象值得大小来判断距离的大小)，
+	            //layoutAnimation : false        // 这个距离也会受 repulsion。支持设置成数组表达边长的范围，此时不同大小的值会线性映射到不同的长度。值越小则长度越长。如下示例:
+	                                        // 值最大的边长度会趋向于 10，值最小的边长度会趋向于 50      edgeLength: [10, 50]
+	        },
+	        layout: "circular",            // 图的布局。[ default: 'none' ]
+	                                    // 'none' 不采用任何布局，使用节点中提供的 x， y 作为节点的位置。
+	                                    // 'circular' 采用环形布局;'force' 采用力引导布局.
+	        // 标记的图形
+	        //symbol: "path://M19.300,3.300 L253.300,3.300 C262.136,3.300 269.300,10.463 269.300,19.300 L269.300,21.300 C269.300,30.137 262.136,37.300 253.300,37.300 L19.300,37.300 C10.463,37.300 3.300,30.137 3.300,21.300 L3.300,19.300 C3.300,10.463 10.463,3.300 19.300,3.300 Z",
+	        symbol: 'circle',
+	        itemStyle: {
+                    normal: {
+                        borderColor: '#fff',
+                        borderWidth: 1,
+                        shadowBlur: 10,
+                        shadowColor: 'rgba(0, 0, 0, 0.3)',
+
+                    }
+                },
+	        label: {                // 关系对象上的标签
+	            position: 'right',
+                    formatter: '{b}'
+	        },
+			lineStyle: {
+                    color: 'source',
+                    curveness: 0.2
+                },
+	        emphasis: {
+                    lineStyle: {
+                        width: 10
+                    }
+                },
+	        data: [],
+	        categories: [],
+	        links: [],
+	    }],
+	    animationEasingUpdate: "quinticInOut",          // 数据更新动画的缓动效果。[ default: cubicOut ]    "quinticInOut"
+	    animationDurationUpdate: 100                    // 数据更新动画的时长。[ default: 300 ]
+	};
+	// 使用刚指定的配置项和数据显示图表
+	ip_scan_37.setOption(option)
+	window.onresize = ip_scan_37.resize;
+	$(function () {
+		$.ajax({
+			async:false,
+			type: 'get',
+			url: '/get_scan_37',
+			dataType: 'json',
+			success: function (res) {
+				ip_scan_37.hideLoading();    //隐藏加载动画
+				ip_scan_37.setOption({        //加载数据图表
+
+					series: [{
+					// 根据名字对应到相应的系列
+                        categories: res['cat'],
+						data: res['key'],
+                        links: res['link'],
+					}],
+                    legend: [{
+					    data: res['cat'],
+                    }]
+				});
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(XMLHttpRequest.status);
+				alert(XMLHttpRequest.readyState);
+				alert(textStatus);
+        	},
+		});
+	})
+</script>

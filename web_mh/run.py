@@ -139,6 +139,314 @@ def get_link_data():
     return jsonify(ls)
 
 
+@app.route('/get_knn')
+def get_knn_data():
+    """
+
+    :return:
+    """
+    a = os.path.dirname(__file__)
+    safe = pd.read_csv(a + '/data/KNN_safe.csv')
+    dangerous = pd.read_csv(a + '/data/KNN_dangerous.csv')
+    lss = []
+    tmp = {}
+    for i in range(len(safe)):
+        dic = []
+        dic.append(str(safe['0'][i]))
+        dic.append(str(safe['1'][i]))
+        dic.append(str(safe['2'][i]))
+        dic.append(str(safe['IP'][i]))
+        lss.append(dic)
+    tmp['safe'] = lss
+
+    lssd = []
+    for i in range(len(dangerous)):
+        dic = []
+        dic.append(str(dangerous['0'][i]))
+        dic.append(str(dangerous['1'][i]))
+        dic.append(str(dangerous['2'][i]))
+        dic.append(str(dangerous['IP'][i]))
+        lssd.append(dic)
+    tmp['dangerous'] = lssd
+
+    sus = dangerous['IP'][:]
+    top10 = sus.value_counts()[:10]
+    lse = []
+    sum_n = 0
+    for i in range(len(top10)):
+        sum_n += top10[i]
+        dic = {"name": str(top10.index[i]), 'value': str(top10[i])}
+        lse.append(dic)
+    other_sum = len(lssd) - sum_n
+    lse.append({"name": "其他IP", 'value': str(other_sum)})
+    tmp['knn_bing'] = lse
+
+    return jsonify(tmp)
+
+
+@app.route('/get_pca')
+def get_pca_data():
+    """
+
+    :return:
+    """
+    a = os.path.dirname(__file__)
+    safe = pd.read_csv(a + '/data/PCA_safe.csv')
+    dangerous = pd.read_csv(a + '/data/PCA_dangerous.csv')
+    lss = []
+    tmp = {}
+    for i in range(len(safe)):
+        dic = []
+        dic.append(str(safe['0'][i]))
+        dic.append(str(safe['1'][i]))
+        dic.append(str(safe['2'][i]))
+        dic.append(str(safe['IP'][i]))
+        lss.append(dic)
+    tmp['safe'] = lss
+
+    lssd = []
+    for i in range(len(dangerous)):
+        dic = []
+        dic.append(str(dangerous['0'][i]))
+        dic.append(str(dangerous['1'][i]))
+        dic.append(str(dangerous['2'][i]))
+        dic.append(str(dangerous['IP'][i]))
+        lssd.append(dic)
+    tmp['dangerous'] = lssd
+
+    sus = dangerous['IP'][:]
+    top10 = sus.value_counts()[:10]
+    lse = []
+    sum_n = 0
+    for i in range(len(top10)):
+        sum_n += top10[i]
+        dic = {"name": str(top10.index[i]), 'value': str(top10[i])}
+        lse.append(dic)
+    other_sum = len(lssd) - sum_n
+    lse.append({"name": "其他IP", 'value': str(other_sum)})
+    tmp['pca_bing'] = lse
+
+    return jsonify(tmp)
+
+
+@app.route('/get_lof')
+def get_lof_data():
+    """
+
+    :return:
+    """
+    a = os.path.dirname(__file__)
+    safe = pd.read_csv(a + '/data/LOF_safe.csv')
+    dangerous = pd.read_csv(a + '/data/LOF_dangerous.csv')
+    lss = []
+    tmp = {}
+    for i in range(len(safe)):
+        dic = []
+        dic.append(str(safe['0'][i]))
+        dic.append(str(safe['1'][i]))
+        dic.append(str(safe['2'][i]))
+        dic.append(str(safe['IP'][i]))
+        lss.append(dic)
+    tmp['safe'] = lss
+
+    lssd = []
+    for i in range(len(dangerous)):
+        dic = []
+        dic.append(str(dangerous['0'][i]))
+        dic.append(str(dangerous['1'][i]))
+        dic.append(str(dangerous['2'][i]))
+        dic.append(str(dangerous['IP'][i]))
+        lssd.append(dic)
+    tmp['dangerous'] = lssd
+
+    sus = dangerous['IP'][:]
+    top10 = sus.value_counts()[:10]
+    lse = []
+    sum_n = 0
+    for i in range(len(top10)):
+        sum_n += top10[i]
+        dic = {"name": str(top10.index[i]), 'value': str(top10[i])}
+        lse.append(dic)
+    other_sum = len(lssd) - sum_n
+    lse.append({"name": "其他IP", 'value': str(other_sum)})
+    tmp['pca_bing'] = lse
+
+    return jsonify(tmp)
+
+
+@app.route('/get_vae')
+def get_vae_data():
+    """
+
+    :return:
+    """
+    a = os.path.dirname(__file__)
+    safe = pd.read_csv(a + '/data/VAE_safe.csv')
+    dangerous = pd.read_csv(a + '/data/VAE_dangerous.csv')
+    lss = []
+    tmp = {}
+    for i in range(len(safe)):
+        dic = []
+        dic.append(str(safe['0'][i]))
+        dic.append(str(safe['1'][i]))
+        dic.append(str(safe['2'][i]))
+        dic.append(str(safe['IP'][i]))
+        lss.append(dic)
+    tmp['safe'] = lss
+
+    lssd = []
+    for i in range(len(dangerous)):
+        dic = []
+        dic.append(str(dangerous['0'][i]))
+        dic.append(str(dangerous['1'][i]))
+        dic.append(str(dangerous['2'][i]))
+        dic.append(str(dangerous['IP'][i]))
+        lssd.append(dic)
+    tmp['dangerous'] = lssd
+
+    sus = dangerous['IP'][:]
+    top10 = sus.value_counts()[:10]
+    lse = []
+    sum_n = 0
+    for i in range(len(top10)):
+        sum_n += top10[i]
+        dic = {"name": str(top10.index[i]), 'value': str(top10[i])}
+        lse.append(dic)
+    other_sum = len(lssd) - sum_n
+    lse.append({"name": "其他IP", 'value': str(other_sum)})
+    tmp['pca_bing'] = lse
+
+    return jsonify(tmp)
+
+
+@app.route('/get_scan_230')
+def get_scan_data():
+    """
+        427个点
+    10.12.1.230:235
+    10.12.80.87:155
+    :return:
+    """
+    a = os.path.dirname(__file__)
+    file_dir = a + '/data/scan_1_230.csv'
+    name_df = pd.read_csv(file_dir)
+    src_ip = name_df['src_ip']  #.groupby('src_ip')
+    dst_ip = name_df['dst_ip']
+
+    count_data = src_ip.value_counts()[:5]
+    count_data = count_data.index  # 联系数量排名前5的ip
+    dst_count_list = []  # 前5的ip涉及到的所有点
+    for i in range(len(src_ip)):
+        if src_ip[i] in count_data:
+            dst_count_list.append(dst_ip[i])
+    dst_count_list.append(count_data[0])
+    dst_count_list.append(count_data[1])
+    dst_count_list.append(count_data[2])
+    dst_count_list.append(count_data[3])
+    dst_count_list.append(count_data[4])
+    all_ip = list(set(dst_count_list))
+
+    lss = {}
+    ls = []
+    for i in range(len(all_ip)):
+        dic = {}
+        dic['name'] = str(all_ip[i])
+        if str(all_ip[i]) == '10.12.1.230':
+            dic['category'] = '10.12.1.230(可疑IP)'
+            dic['symbolSize'] = '30'
+        elif str(all_ip[i]) in count_data:
+            dic['category'] = str(all_ip[i])
+            dic['symbolSize'] = '25'
+        else:
+            dic['category'] = 'other'
+            dic['symbolSize'] = '10'
+        ls.append(dic)
+    lss['key'] = ls
+    li = []
+    for i in range(len(src_ip.values)):
+        if str(src_ip[i]) in count_data:
+            dic = {}
+            dic['source'] = str(src_ip[i])
+            dic['target'] = str(dst_ip[i])
+            li.append(dic)
+    lss['link'] = li
+
+    lsc = []
+    for i in count_data:
+        dic = {}
+        if str(i) == '10.12.1.230':
+            dic['name'] = str(i) + '(可疑IP)'
+        else:
+            dic['name'] = str(i)
+        lsc.append(dic)
+    lsc.append({'name': 'other'})
+    lss['cat'] = lsc
+    return jsonify(lss)
+
+
+@app.route('/get_scan_37')
+def get_scan_data_37():
+    """
+    389个点
+    10.12.1.37:194
+    10.12.80.87:160
+    :return:
+    """
+    a = os.path.dirname(__file__)
+    file_dir = a + '/data/scan_1_37.csv'
+    name_df = pd.read_csv(file_dir)
+    src_ip = name_df['src_ip']  # .groupby('src_ip')
+    dst_ip = name_df['dst_ip']
+
+    count_data = src_ip.value_counts()[:5]
+    count_data = count_data.index  # 联系数量排名前5的ip
+    dst_count_list = []  # 前5的ip涉及到的所有点
+    for i in range(len(src_ip)):
+        if src_ip[i] in count_data:
+            dst_count_list.append(dst_ip[i])
+    dst_count_list.append(count_data[0])
+    dst_count_list.append(count_data[1])
+    dst_count_list.append(count_data[2])
+    dst_count_list.append(count_data[3])
+    dst_count_list.append(count_data[4])
+    all_ip = list(set(dst_count_list))
+
+    lss = {}
+    ls = []
+    for i in range(len(all_ip)):
+        dic = {}
+        dic['name'] = str(all_ip[i])
+        if str(all_ip[i]) == '10.12.1.37':
+            dic['category'] = '10.12.1.37(可疑IP)'
+            dic['symbolSize'] = '30'
+        elif str(all_ip[i]) in count_data:
+            dic['category'] = str(all_ip[i])
+            dic['symbolSize'] = '25'
+        else:
+            dic['category'] = 'other'
+            dic['symbolSize'] = '10'
+        ls.append(dic)
+    lss['key'] = ls
+    li = []
+    for i in range(len(src_ip.values)):
+        if str(src_ip[i]) in count_data:
+            dic = {}
+            dic['source'] = str(src_ip[i])
+            dic['target'] = str(dst_ip[i])
+            li.append(dic)
+    lss['link'] = li
+
+    lsc = []
+    for i in count_data:
+        dic = {}
+        if str(i) == '10.12.1.37':
+            dic['name'] = str(i) + '(可疑IP)'
+        else:
+            dic['name'] = str(i)
+        lsc.append(dic)
+    lsc.append({'name': 'other'})
+    lss['cat'] = lsc
+    return jsonify(lss)
 
 if __name__ == '__main__':
     app.run(host=HOST_IP, port=PORT, debug=True)
