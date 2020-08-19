@@ -4,7 +4,6 @@
 @Email: liying_china@163.com
 @File: run.py
 @Create Time: 2020/7/10 上午9:53
-华东空管局数据检测结果
 """
 
 
@@ -19,14 +18,14 @@ reload(sys)
 #sys.setdefaultencoding('utf8')
 #HOST_IP = "60.205.204.64"
 HOST_IP = "0.0.0.0"
-PORT = 5002
+PORT = 5000
 
 app = Flask(__name__)
 
 labels = None
 content = None
-jlabels = None
-jcontent = None
+slabels = None
+scontent = None
 
 
 class MyEncoder(json.JSONEncoder):
@@ -41,6 +40,39 @@ class MyEncoder(json.JSONEncoder):
 def graph_ip():
     return render_template('/graph_result.html')
 
+@app.route('/detail')
+def detail():
+    return render_template('detail.html', labels=labels, \
+            content=content)
+
+@app.route('/search')
+def search():
+    return render_template('search.html')
+
+@app.route('/search_data', methods=['post', 'get'])
+def search_data():
+    global labels
+    global content
+    global slabels
+    global scontent
+    S = request.get_data()
+    # get annual sales rank
+    print(S)
+    T = bytes.decode(S)
+    print(999999)
+    print(T)
+    str_cmd = "python2 search.py -s {}".format(T)
+    filetype =  os.popen(str_cmd).read().strip().split("?")
+    print(filetype)
+    labels = filetype[::2]
+    print(labels)
+    content = filetype[1::2]
+    print(content)
+    print(7777777)
+    print(slabels)
+    print(scontent) 
+    #return redirect(url_for('detail',labels=labels,content=content,jlabels=jlabels,jcontent=jcontent))
+    return jsonify({"labels":labels,"contents":content})
 
 def map_rate(x, to_min, to_max, max_num, min_num):
     """

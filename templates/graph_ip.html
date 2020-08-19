@@ -48,11 +48,11 @@ var app = {};
 option = null;
 
 var data = [
-    {name: '上海', value: 300},
+    {name: '北京', value: 300},
 ];
 
 var geoCoordMap = {
-    '上海':[121.353461,31.193463],
+    '北京':[116.408000,39.904000],
 };
 
 var convertData = function (data) {
@@ -72,14 +72,14 @@ var convertData = function (data) {
 option = {
     backgroundColor: 'transparent',
     title : {
-        text : '数据统计结果',
+        text : '病毒样本库展示',
         left : '3%',                    // 标题距离左侧边距
         top : '3%',
         textStyle : {
             fontSize: 40,
             color : '#fff'
         },
-        subtext:'2020年1月19日-2020年2月17日',
+        subtext:'2020年8月',
         subtextStyle:{
             fontSize: 35,
             color : '#fff'
@@ -89,7 +89,7 @@ option = {
         textStyle:{fontSize:35},
         formatter(params){
            for(x in params){
-               return '上海';
+               return '北京';
            }
         }
     },
@@ -256,7 +256,7 @@ option = {
             }
         },
         {
-            name: '上海',
+            name: '北京',
             type: 'effectScatter',
             coordinateSystem: 'bmap',
             data: convertData(data.sort(function (a, b) {
@@ -295,6 +295,13 @@ if (option && typeof option === "object") {
     china_map.setOption(option, true);
 }
 </script>
+<div>你</div>
+<HR style="FILTER: alpha(opacity=50,finishopacity=0,style=3)" width="100%" color=#e9e9e9 SIZE=2>
+        <div class="LSTM" style="width:100%;padding-top: 15px;padding-left: 30px;padding-bottom15px">
+                <h1 style='font-size:35px;text-align:left'>LSTM检测可疑IP</h1>
+                <div style='height:40px;font-size:20px;text-align:left;vertical-align:center;'>实验室已收集恶意样本数：357761537</div>
+                <div style='height:40px;font-size:20px;text-align:left;vertical-align:center;'>本数据中DNS样本数：148165579</div>
+        </div>
 <!-- ip关系图-->
 <script type="text/javascript">
 	// 基于准备好的容器(这里的容器是id为chart1的div)，初始化echarts实例

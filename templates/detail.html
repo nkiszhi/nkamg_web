@@ -10,14 +10,14 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
      <style>
         .first {
-            width: 100%;
-            float:left;
+            float: left;
+            width: 150%;
             height: 200px;
             border: 1px solid #3B6273;
         }
         .second {
-            width: 100%;
-            float:right;
+            float:left;
+            width: 150%;
             height: 200px;
             border: 1px solid #3B6273;
         }
@@ -26,15 +26,15 @@
 </head>
 <body>
 <div class="row",class="first">
-    <div class="col-md-10 col-sm-30 col-xs-30">
+    <div class="col-md-12 col-sm-30 col-xs-30">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>Android Malware Details</h4>
+                <h4 style='font-size:35px;text-align:center'>样本基础信息</h4>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover">
-                      <tbody>	
+                      <tbody style='font-size:35px;text-align:center'>	
                         {% for i in labels %}
                            <table class="mailTable"  cellspacing="0" cellpadding="0">
                           
@@ -52,24 +52,27 @@
     </div>
 
 </div>
-<div class="row",class="second">
-    <div class="col-md-10 col-sm-30 col-xs-30">
+
+<!--div class="row",class="second">
+    <div class="col-md-12 col-sm-30 col-xs-30">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>Android Json Details</h4>
+                <h4 style='font-size:35px;text-align:center'>样本Section信息</h4>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover">
-                      <tbody>   
-                        {% for i in jlabels %}
+                      <tbody style='font-size:35px;text-align:center'>
+                        {% for i in slabels %}
                            <table class="mailTable"  cellspacing="0" cellpadding="0">
-                          
+
                            <tr>
-                           <td class="column">{{ jlabels[jlabels.index(i)] }}</td>
-                           <td>{{jcontent[jlabels.index(i)]}}</td>
+                           <td class="column">{{ slabels[slabels.index(i)] }}</td>
+                           <td>{{scontent[0][slabels.index(i)]}}</td>
+                           <td>{{scontent[1][labels.index(i)]}}</td>
+                           <td>{{scontent[2][labels.index(i)]}}</td>
                            </tr>
-                         {% endfor %} 
+                         {% endfor %}
                        </tbody>
                     </table>
                 </div>
@@ -78,7 +81,8 @@
 
     </div>
 
-</div>
+</div-->
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
