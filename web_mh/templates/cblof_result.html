@@ -1,0 +1,331 @@
+<!--当前所用版本，2020.7.16-->
+<!DOCTYPE html>
+<html>
+<head>
+{#	<link rel="shortcut icon" href="#" />#}
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- 使用IE8以上的渲染 -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>CBLOF数据分析可视化</title>
+	<!--导入的为ECharts3的js中国民用航空华东地区空中交通管理局数据分析结果 -->
+    <style type="text/css">
+    html {
+        font-family: sans-serif;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        margin: 10px;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    td,th {
+        padding: 0;
+    }
+
+    .pure-table {
+	    width:80%;
+        border-collapse: collapse;
+        border-spacing: 0;
+		padding-bottom:30px;
+        margin: 0px auto;
+        empty-cells: show;
+        border: 1px solid #cbcbcb;
+    }
+
+    .pure-table caption {
+        color: #000;
+        font: italic 85%/1 arial,sans-serif;
+        padding: 1em 0;
+        text-align: center;
+    }
+
+    .pure-table td,.pure-table th {
+        border-left: 1px solid #cbcbcb;
+        border-width: 0 0 0 1px;
+        font-size: inherit;
+        text-align:center;
+        vertical-align:center;
+        margin: 0;
+        overflow: visible;
+        padding: .5em 1em;
+    }
+
+    .pure-table thead {
+        background-color: #e0e0e0;
+        color: #000;
+        text-align: left;
+        vertical-align: bottom;
+    }
+
+    .pure-table td {
+        background-color: transparent;
+    }
+    .ul_lstm{
+        font-size:20px;
+
+    }
+    </style>
+</head>
+<body>
+    <!-- CBLOF算法-->
+    <div id="cblof" style="width: 100%;height: 1000px;"></div>
+	<!-- CBLOF算法表格 -->
+	<HR style="FILTER: alpha(opacity=50,finishopacity=0,style=3)" width="100%" color=#e9e9e9 SIZE=2>
+	<div class="p-value" style="width:100%;padding-top: 15px;padding-left: 30px;padding-bottom:30px">
+		<h2 style='text-align:center; padding-top:30px;'>TOP10危险IP可疑访问可信度——CBLOF算法</h2>
+		<table class="pure-table", style="width:50%;">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>IP</th>
+				<th>P-value</th>
+			</tr>
+		</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>10.12.1.56</td>
+					<td>0.9944</td>
+				</tr>
+
+				<tr>
+					<td>2</td>
+					<td>10.12.1.2</td>
+					<td>0.8519</td>
+				</tr>
+
+				<tr>
+					<td>3</td>
+					<td>10.12.1.195</td>
+					<td>1.0000</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>10.12.44.138</td>
+					<td>0.9931</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>10.12.16.32</td>
+					<td>0.9890</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>10.12.28.37</td>
+					<td>0.9933</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>10.12.45.100</td>
+					<td>0.9821</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>10.12.44.130</td>
+					<td>0.9944</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>10.12.60.32</td>
+					<td>0.9575</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>10.12.45.129</td>
+					<td>0.9968</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=o3qDkeQeqpLved3L2kVlHeFWhbv8sUv1&__ec_v__=20190126"></script>
+</body>
+</html>
+
+<!-- cblof算法-->
+<script type="text/javascript">
+var dom = document.getElementById("cblof");
+var cblof = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "2月16日CBLOF异常检测结果图",           // 标题文本
+            subtext: '随机抽取1%的数据进行展示',
+            subtextStyle: {
+                top:'2%',
+                fontSize:20,
+            },
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            left:'-20%',
+            top:'3%',
+            bottom: '10%',
+        },
+		tooltip: {
+               // trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                },
+				textStyle:{fontSize:20},
+            },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: 'IP', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:20
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '110px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'安全访问：10429次',
+                    icon:'circle',
+                },
+                {
+                    name:'危险访问：469次',
+                    icon:'circle',
+                },{
+                    name:'可疑IP访问情况(饼状图)',
+                    icon:'circle',
+                },
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+
+        series: [
+            {
+                name:'安全访问：10429次',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'危险访问：469次',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },{
+                name:'可疑IP访问情况(饼状图)',
+                type: 'pie',
+                data:[],
+                position: 'right',
+                draggable: true,
+				
+                radius: "45%",
+                center: ["78%", "50%"],
+                label:{            //饼图图形上的文本标签
+                            normal:{
+                                show:true,
+                                textStyle : {
+                                    //fontWeight : 500 ,
+                                    fontSize : 20    //文字的字体大小
+                                },
+                             }},
+                z:100,
+                itemStyle:{
+                    shadowBlur: 20,
+                    shadowColor: 'rgba(0,0,0,0.5)',
+
+                },
+            }
+        ]
+    };
+
+    cblof.setOption(option)
+	window.onresize = cblof.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_cblof',
+            dataType: 'json',
+            success: function (res) {
+                cblof.hideLoading();    //隐藏加载动画
+                cblof.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'安全访问：10429次',
+                        data: res['safe'],
+                    },{
+                        name:'危险访问：469次',
+                        data:res['dangerous']
+                    },{
+                        name:'可疑IP访问情况(饼状图)',
+                        data: res['pca_bing']
+                    }
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+
