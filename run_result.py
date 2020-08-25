@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*-coding:utf-8 -*-
 """
 @Author: liying
@@ -11,10 +12,11 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for
 import json
 import pandas as pd
 import sys
-from importlib import reload
 import os
-
+from search import get_sha256_info 
+import sys
 reload(sys)
+sys.setdefaultencoding('utf8') 
 #sys.setdefaultencoding('utf8')
 #HOST_IP = "60.205.204.64"
 HOST_IP = "0.0.0.0"
@@ -23,10 +25,10 @@ PORT = 5000
 app = Flask(__name__)
 
 labels = None
-content = None
+contents = None
 slabels = None
-scontent = None
-
+scontents = None
+title = None
 
 class MyEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -42,8 +44,9 @@ def graph_ip():
 
 @app.route('/detail')
 def detail():
+    print(scontents)
     return render_template('detail.html', labels=labels, \
-            content=content)
+            contents=contents,title=title,slabels=slabels,scontents=scontents,stitle=stitle,atitle=atitle,alabels=alabels,acontents=acontents,ititle=ititle,ilabels=ilabels,icontents=icontents,icontents_=icontents_,etitle=etitle,elabels=elabels,econtents=econtents)
 
 @app.route('/search')
 def search():
@@ -52,28 +55,47 @@ def search():
 @app.route('/search_data', methods=['post', 'get'])
 def search_data():
     global labels
-    global content
+    global contents
     global slabels
-    global scontent
+    global scontents
+    global title
+    global stitle
+    global atitle
+    global alabels
+    global acontents
+    global ititle
+    global ilabels
+    global icontents
+    global icontents_
+    global etitle
+    global elabels
+    global econtents
     S = request.get_data()
     # get annual sales rank
     print(S)
     T = bytes.decode(S)
     print(999999)
     print(T)
+    '''
     str_cmd = "python2 search.py -s {}".format(T)
     filetype =  os.popen(str_cmd).read().strip().split("?")
     print(filetype)
-    labels = filetype[::2]
-    print(labels)
-    content = filetype[1::2]
-    print(content)
-    print(7777777)
-    print(slabels)
-    print(scontent) 
+    '''
+    title,labels,contents,slabels,scontents,stitle,atitle,alabels,acontents,ititle,ilabels,icontents,icontents_,etitle,elabels,econtents = get_sha256_info(T)
+    #labels=[]
+    #contents=[]
+    #title = ""
+    print(ilabels)
+    print(icontents)
+    print(66666) 
+    print(econtents)
     #return redirect(url_for('detail',labels=labels,content=content,jlabels=jlabels,jcontent=jcontent))
-    return jsonify({"labels":labels,"contents":content})
+    return jsonify({title:title,"labels":labels,"contents":contents,"slabels":slabels,"scontents":scontents,"stitle":stitle,"atitle":atitle,"alabels":alabels,"acontents":acontents,"ititle":ititle,"ilabels":ilabels,"icontents":icontents,"icontents_":icontents_,"etitle":etitle,"elabels":elabels,"econtents":econtents})
 
+
+
+
+'''
 def map_rate(x, to_min, to_max, max_num, min_num):
     """
     将指定的访问次数映射到区间范围，作为点的大小
@@ -391,6 +413,6 @@ def get_scan_data_37():
     lsc.append({'name': 'other'})
     lss['cat'] = lsc
     return jsonify(lss)
-
+    '''
 if __name__ == '__main__':
     app.run(host=HOST_IP, port=PORT, debug=True)
