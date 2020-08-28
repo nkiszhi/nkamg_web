@@ -1,0 +1,5 @@
+*.pkl
+*.pki
+*.csv
+*.pyc
+.idea

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html style="font-size: 68.3px;">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>基于多模型的DGA域名检测系统</title>
+<script type="text/javascript" src="/static/jquery.js"></script>
+<link rel="stylesheet" href="/static/comon0.css">
+
+<script>
+    $(window).load(function () {
+        $(".loading").fadeOut()
+    })
+
+
+    $(document).ready(function () {
+        var whei = $(window).width();
+        $("html").css({ fontSize: whei / 20 });
+        $(window).resize(function () {
+            var whei = $(window).width();
+            $("html").css({ fontSize: whei / 20 })
+        });
+    });
+</script>
+<script type="text/javascript" src="/static/echarts.min.js"></script>
+<!--<script language="JavaScript" src="/static/js.js"></script>-->
+<style class="mpa-style-fix ImageGatherer">.FotorFrame{position:fixed!important}</style>
+<style class="mpa-style-fix SideFunctionPanel">.weui-desktop-online-faq__wrp{top:304px!important;bottom:none!important}.weui-desktop-online-faq__wrp .weui-desktop-online-faq__switch{width:38px!important}
+</style>
+</head>
+
+
+
+<body mpa-version="6.10.2" mpa-extension-id="ibefaeehajgcpooopoegkifhgecigeeg">
+    <div class="canvas" style="opacity: .2">
+        <iframe frameborder="0" src="/static/index.html" style="width: 100%; height: 100%"></iframe>
+    </div>
+    <div class="loading" style="display: none;">
+        <div class="loadbox"> <img src="/static/loading.gif"> 页面加载中... </div>
+    </div>
+    <div class="head">
+
+        <h1>基于多模型的DGA域名检测系统</h1>
+        <div class="weather"><span id="showTime">2019年12月25-10时10分59秒</span></div>
+
+        <script>
+            var t = null;
+            t = setTimeout(time, 1000);
+            function time() {
+                clearTimeout(t);
+                dt = new Date();
+                var y = dt.getFullYear();
+                var mt = dt.getMonth() + 1;
+                var day = dt.getDate();
+                var h = dt.getHours();
+                var m = dt.getMinutes();
+                var s = dt.getSeconds();
+                document.getElementById("showTime").innerHTML = y + "年" + mt + "月" + day + "日 " + h + "时" + m + "分" + s + "秒";
+                t = setTimeout(time, 1000);
+            }
+        </script>
+    </div>
+    <div class="mainbox">
+        <ul class="clearfix">
+            <li>
+                <div class="boxall" style="margin-bottom: .45rem;height:4.1rem">
+                    <div class="bar">
+                    <!--训练数据-->
+                    <h1 style="color:rgba(255,255,255,.7);text-align: center;font-size: .4rem;line-height: .8rem">训练数据</h1>
+                    <!--样本介绍-->
+                    <div class="barbox" style="margin-top: 25px">
+                        <ul class="clearfix">
+                            <li class="pulll_left counter">660471</li>
+                            <li class="pulll_left counter">7449471</li>
+                        </ul>
+                    </div>
+
+                    <div class="barbox2">
+                        <ul class="clearfix">
+                            <li class="pulll_left">良性样本数</li>
+                            <li class="pulll_left">恶意样本数</li>
+                        </ul>
+                    </div>
+
+                    <div class="barbox2" style="margin-top: 40px;">
+                        <ul class="clearfix">
+                            <li class="pulll_left counter" style="width: 100%;text-align: left;font-size: 0.21rem;">--良性样本采集自2019年Alexa网站前100万域名列表</li>
+                            <li class="pulll_left counter" style="width: 100%;text-align: left;font-size: 0.21rem;padding-top: 6px">--恶意样本采集自各大知名安全网站</li>
+                        </ul>
+                    </div>
+                    <!--地球-->
+                    <div class="map" id="map">
+                        <div class="map1" style="width: 5.0rem;left: 0.3rem;top: 0rem;"><img src="/static/lbx.png"></div>
+                        <div class="map2" style="width: 4.66rem;left: 0.5rem;top: 0.5rem;"><img src="/static/jt.png"></div>
+                        <div class="map3" style="width: 4rem;top: 0.5rem;left: 0.8rem;"><img src="/static/map.png"></div>
+                    </div>
+
+                </div>
+                    <div class="boxfoot"></div>
+                </div>
+                <div class="boxall" style="height: 4.4rem;">
+                    <div class="alltitle" style="font-weight: bolder;color: rgba(255,255,255,.7)">恶意样本采集数量统计图</div>
+                    <div class="allnav" id="echart4"></div>
+                    <div class="boxfoot"></div>
+                </div>
+
+            </li>
+
+            <li>
+                <div class="boxall" style="margin-bottom: 0.45rem;height: 4.1rem">
+                    <div class="bar">
+                    <!--域名检测-->
+                    <h1 style="color:rgba(255,255,255,.7);text-align: center;font-size: .4rem;line-height: .8rem">域名检测</h1>
+                    <!--文本输入-->
+                    <div class="search" style="height: 78px;margin-bottom: 0px">
+                        <input type="text" placeholder="请输入域名，如www.baidu.com" id="in" />
+                        <script>
+                            function get_input(){
+                                var input_val = document.getElementById('in').value;
+                                input_val = input_val.replace(/\s*/g,"");// 去除所有空格
+                                // input_val = input_val.replace(/^\s*|\s*$/g,"");//去除两头空格
+                                var re = /^[A-Za-z0-9._\-]*$/;
+                                if (!re.test(input_val)){
+                                    alert("请输入正确域名\n（域名中只能包含下划线、短横线、点、字母、数字)");
+                                    return false;
+                                }
+                                $.ajax({
+                                    async: false,
+                                    url: "/get_result",
+                                    type: "POST",
+                                    data: {"input_val": input_val},
+                                    dataType: "text",
+                                    success:function (res) {
+                                        console.log("success");
+                                        var res_dic = JSON.parse(res)
+                                        console.log(res_dic)
+                                        console.log(res_dic.lstm)
+
+                                        var l_lstm = res_dic.lstm[0];
+                                        var p_lstm = res_dic.lstm[1];
+                                        var l_xgboost = res_dic.xgboost[0];
+                                        var p_xgboost = res_dic.xgboost[1];
+                                        var l_brf = res_dic.brf[0];
+                                        var p_brf = res_dic.brf[1];
+                                        var l_svm = res_dic.svm[0];
+                                        var p_svm = res_dic.svm[1];
+
+                                        var score = Number(l_lstm) + Number(l_brf) + Number(l_xgboost) + Number(l_svm);
+                                        console.log(score);
+                                        if (score >= 3){
+                                            var conclusio = document.getElementById('conclusion');
+                                            conclusio.style.color = "#DC143C"
+                                            conclusio.innerText = "危险"
+                                        }
+                                        else if (score >= 1 && score <=2){
+                                            var conclusio = document.getElementById('conclusion');
+                                            conclusio.style.color = "#FFA500"
+                                            conclusio.innerText = "可疑"
+                                        }
+                                        else{
+                                            console.log("安全域名")
+                                            var conclusio = document.getElementById('conclusion');
+                                            conclusio.style.color = "#00FFFF";
+                                            conclusio.innerText = "安全"
+                                        }
+
+                                        var tableinfo = document.getElementById('tableinfo');
+                                        tableinfo.rows[2].cells[1].innerHTML = l_xgboost;
+                                        tableinfo.rows[3].cells[1].innerHTML = p_xgboost;
+                                        tableinfo.rows[2].cells[2].innerHTML = l_brf;
+                                        tableinfo.rows[3].cells[2].innerHTML = p_brf;
+                                        tableinfo.rows[2].cells[3].innerHTML = l_svm;
+                                        tableinfo.rows[3].cells[3].innerHTML = p_svm;
+                                        tableinfo.rows[2].cells[4].innerHTML = l_lstm;
+                                        tableinfo.rows[3].cells[4].innerHTML = p_lstm;
+                                    },error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                        alert(XMLHttpRequest.status);
+                                        alert(XMLHttpRequest.readyState);
+                                        alert(textStatus);
+                                    },
+                                })
+                            }
+                        </script>
+                        <input class='button_in' type="button" value="模型分析" onclick="get_input()"/>
+                    </div>
+                    <!--最终结果-->
+                    <div style="color:rgba(255,255,255,.7);width:90%;margin:14px auto;text-align: center;font-size: .2rem;line-height: .6rem">
+                        --------------------------------------------------------检测结果为--------------------------------------------------------&#10;
+                        <div id='conclusion' style="font-size:.5rem; color:#ffeb7b;font-weight: bolder;margin-bottom: 30px;margin-top: 18px;">???</div>
+                    </div>
+                    <!--地球-->
+                    <div class="map" id="map">
+                        <div class="map1" style="left: 1rem;top: -2rem;width:9rem;"><img src="/static/lbx.png"></div>
+                    </div>
+
+                     </div>
+                    <div class="boxfoot"></div>
+                </div>
+
+                <div class="boxall" style="height: 4.4rem;">
+                    <div class="bar" style="padding-bottom: 35px">
+                        <h1 style="color:rgba(255,255,255,.7);text-align: center;font-size: .4rem;line-height: .8rem">各模型检测结果</h1>
+                        <!--结果表格-->
+                        <table class="pure-table" id="tableinfo">
+                            <thead>
+                                <tr >
+                                    <th >模型类别</th>
+                                    <th colspan="3">人工特征模型</th>
+                                    <th style="border-right: none">自动特征模型</th>
+                                </tr>
+                                <tr >
+                                    <th style="width: 17%;">模型名称</th>
+                                    <th style="width: 20%">XGBoost</th>
+                                    <th style="width: 20%">B-RF</th>
+                                    <th style="width: 20%">SVM</th>
+                                    <th style="width: 27%;border-right: none">LSTM</th>
+                                </tr>
+                            </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>预测结果</td>
+                                        <td>??</td>
+                                        <td>??</td>
+                                        <td>??</td>
+                                        <td style="border-right: none">??</td>
+                                    </tr>
+                                    <tr>
+                                        <td>恶意概率</td>
+                                        <td>??</td>
+                                        <td>??</td>
+                                        <td>??</td>
+                                        <td style="border-right: none">??</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
+                    <div class="boxfoot"></div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+    <!--地球-->
+    <script type="text/javascript" src="/static/china.js"></script>
+
+
+<div class="mpa-sc article-gatherer new mpa-rootsc" data-z="100" style="display: block;" id="mpa-rootsc-article-gatherer"></div>
+    <div class="mpa-sc image-gatherer new mpa-rootsc" data-z="100" style="display: block;" id="mpa-rootsc-image-gatherer"></div>
+    <div class="mpa-sc page-clipper new mpa-rootsc" data-z="100" style="display: block;" id="mpa-rootsc-page-clipper"></div>
+    <div class="mpa-sc global-search new mpa-rootsc" data-z="100" style="display: block;" id="mpa-rootsc-global-search"></div>
+    <div class="mpa-sc text-gatherer new mpa-rootsc" data-z="100" style="display: block;" id="mpa-rootsc-text-gatherer"></div>
+    <div class="mpa-sc video-gatherer new mpa-rootsc" data-z="100" style="display: block;" id="mpa-rootsc-video-gatherer"></div>
+    <div class="mpa-sc side-function-panel new mpa-rootsc" data-z="110" style="display: block;" id="mpa-rootsc-side-function-panel">
+
+    </div><div class="mpa-sc notifier new mpa-rootsc" data-z="120" style="display: block;" id="mpa-rootsc-notifier"></div>
+    <div class="mpa-sc notification-manager new mpa-rootsc" data-z="130" style="display: block;" id="mpa-rootsc-notification-manager"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+var dom = document.getElementById("echart4");
+var echart4 = echarts.init(dom);
+var app = {};
+option = null;
+var dataMap = {};
+
+option = {
+	    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            lineStyle: {
+                color: '#dddc6b'
+            }
+        }
+    },
+    legend: {
+        top:'0%',
+        right: '3%',
+        textStyle: {
+           color: 'rgba(255,255,255,.5)',
+			fontSize:'12',
+        }
+    },
+    grid: {
+        left: '5%',
+        top: '25%',
+        right: '13%',
+        bottom: '2%',
+        containLabel: true
+    },
+
+    xAxis: [{
+        name:'(日)',
+        nameTextStyle: {color: 'rgba(255,255,255,.5)'},
+        type: 'category',
+        boundaryGap: false,
+        axisLabel:  {
+                rotate:45,
+                interval: 15,
+                textStyle: {
+ 					color: "rgba(255,255,255,.6)",
+					fontSize:12,
+                },
+            },
+        axisLine: {
+			lineStyle: {
+				color: 'rgba(255,255,255,.2)'
+			}
+        },
+        data: ['2019-10-31', '2019-11-01', '2019-11-02', '2019-11-03', '2019-11-04', '2019-11-05', '2019-11-06', '2019-11-07', '2019-11-08', '2019-11-09', '2019-11-10', '2019-11-11', '2019-11-12', '2019-11-13', '2019-11-14', '2019-11-15', '2019-11-16', '2019-11-17', '2019-11-18', '2019-11-19', '2019-11-20', '2019-11-21', '2019-11-22', '2019-11-23', '2019-11-24', '2019-11-25', '2019-11-26', '2019-11-27', '2019-11-28', '2019-11-29', '2019-11-30', '2019-12-01', '2019-12-02', '2019-12-03', '2019-12-04', '2019-12-05', '2019-12-06', '2019-12-07', '2019-12-08', '2019-12-09', '2019-12-10', '2019-12-11', '2019-12-12', '2019-12-13', '2019-12-14', '2019-12-15', '2019-12-16', '2019-12-17', '2019-12-18', '2019-12-19', '2019-12-20', '2019-12-21', '2019-12-22', '2019-12-23', '2019-12-24', '2019-12-25', '2019-12-26', '2019-12-27', '2019-12-28', '2019-12-29', '2019-12-30', '2019-12-31', '2020-01-01', '2020-01-02', '2020-01-03', '2020-01-04', '2020-01-05', '2020-01-06', '2020-01-07', '2020-01-08', '2020-01-09', '2020-01-10', '2020-01-11', '2020-01-12', '2020-01-13', '2020-01-14', '2020-01-15', '2020-01-16', '2020-01-17', '2020-01-18', '2020-01-19', '2020-01-20', '2020-01-21', '2020-01-22', '2020-01-23', '2020-01-24', '2020-01-25', '2020-01-26', '2020-01-27', '2020-01-28', '2020-01-29', '2020-01-30', '2020-01-31', '2020-02-01', '2020-02-02', '2020-02-03', '2020-02-04', '2020-02-05', '2020-02-06', '2020-02-07', '2020-02-08', '2020-02-09', '2020-02-10', '2020-02-11', '2020-02-12', '2020-02-13', '2020-02-14', '2020-02-15', '2020-02-16', '2020-02-17', '2020-02-18', '2020-02-19', '2020-02-20', '2020-02-21', '2020-02-22', '2020-02-23', '2020-02-24', '2020-02-25', '2020-02-26', '2020-02-27', '2020-02-28', '2020-02-29', '2020-03-01', '2020-03-02', '2020-03-03', '2020-03-04', '2020-03-05', '2020-03-06', '2020-03-07', '2020-03-08', '2020-03-09', '2020-03-10', '2020-03-11', '2020-03-12', '2020-03-13', '2020-03-14', '2020-03-15', '2020-03-16', '2020-03-17', '2020-03-18', '2020-03-19', '2020-03-20', '2020-03-21', '2020-03-22', '2020-03-23', '2020-03-24', '2020-03-25', '2020-03-26', '2020-03-27', '2020-03-28', '2020-03-29', '2020-03-30', '2020-03-31', '2020-04-01', '2020-04-02', '2020-04-03', '2020-04-04', '2020-04-05', '2020-04-06', '2020-04-07', '2020-04-08', '2020-04-09', '2020-04-10', '2020-04-11', '2020-04-12', '2020-04-13', '2020-04-14', '2020-04-15', '2020-04-16', '2020-04-17', '2020-04-18', '2020-04-19', '2020-04-20', '2020-04-21', '2020-04-22', '2020-04-23', '2020-04-24', '2020-04-25', '2020-04-26', '2020-04-27', '2020-04-28', '2020-04-29', '2020-04-30', '2020-05-01', '2020-05-02', '2020-05-03', '2020-05-04', '2020-05-05', '2020-05-06', '2020-05-07', '2020-05-08', '2020-05-09', '2020-05-10', '2020-05-11', '2020-05-12', '2020-05-13', '2020-05-14', '2020-05-15', '2020-05-16', '2020-05-17', '2020-05-18', '2020-05-19', '2020-05-20', '2020-05-21', '2020-05-22', '2020-05-23', '2020-05-24', '2020-05-25', '2020-05-26', '2020-05-27', '2020-05-28', '2020-05-29', '2020-05-30', '2020-05-31', '2020-06-01', '2020-06-02', '2020-06-03', '2020-06-04', '2020-06-05', '2020-06-06', '2020-06-07', '2020-06-08', '2020-06-09', '2020-06-10', '2020-06-11', '2020-06-12', '2020-06-13', '2020-06-14', '2020-06-15', '2020-06-16', '2020-06-17', '2020-06-18', '2020-06-19', '2020-06-20', '2020-06-21', '2020-06-22', '2020-06-23', '2020-06-24', '2020-06-25', '2020-06-26', '2020-06-27', '2020-06-28', '2020-06-29', '2020-06-30', '2020-07-01', '2020-07-02', '2020-07-03', '2020-07-04', '2020-07-05', '2020-07-06', '2020-07-07', '2020-07-08', '2020-07-09', '2020-07-10', '2020-07-11', '2020-07-12', '2020-07-13', '2020-07-14', '2020-07-15', '2020-07-16', '2020-07-17', '2020-07-18', '2020-07-19', '2020-07-20', '2020-07-21', '2020-07-22', '2020-07-23', '2020-07-24', '2020-07-25', '2020-07-26', '2020-07-27', '2020-07-28', '2020-07-29', '2020-07-30', '2020-07-31', '2020-08-01', '2020-08-02', '2020-08-03', '2020-08-04', '2020-08-05', '2020-08-06', '2020-08-07', '2020-08-08', '2020-08-09', '2020-08-10', '2020-08-11', '2020-08-12', '2020-08-13', '2020-08-14', '2020-08-15', '2020-08-16', '2020-08-17', '2020-08-18', '2020-08-19', '2020-08-20', '2020-08-21', '2020-08-22'],
+    }, {
+        axisPointer: {show: false},
+        axisLine: {  show: false},
+        position: 'bottom',
+        offset: 20,
+    }],
+
+    yAxis: [{
+        name: '(恶意样本数)',
+        nameTextStyle: {color: 'rgba(255,255,255,.5)'},
+        type: 'value',
+        axisTick: {show: false},
+        axisLine: {
+            lineStyle: {
+                color: 'rgba(255,255,255,.1)'
+            }
+        },
+       axisLabel:  {
+            formatter: function(value,index){
+                      var value;
+                      value = value/10000+'w'
+                      return value; },
+
+            textStyle: {
+                color: "rgba(255,255,255,.6)",
+                fontSize:12,
+            },
+       },
+
+        splitLine: {
+            lineStyle: {
+                 color: 'rgba(255,255,255,.1)'
+            }
+        }
+    }],
+    series: [
+        {
+        name: '恶意样本数',
+        type: 'line',
+        smooth: true,
+        symbol: 'circle',
+        symbolSize: 5,
+        showSymbol: false,
+        lineStyle: {
+
+            normal: {
+				color: '#00d887',
+                width: 2
+            }
+        },
+        areaStyle: {
+            normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(0, 216, 135, 0.4)'
+                }, {
+                    offset: 0.8,
+                    color: 'rgba(0, 216, 135, 0.1)'
+                }], false),
+                shadowColor: 'rgba(0, 0, 0, 0.1)',
+            }
+        },
+        itemStyle: {
+        normal: {
+            color: '#00d887',
+            borderColor: 'rgba(221, 220, 107, .1)',
+            borderWidth: 12
+            }
+		},
+        data: [871720, 888167, 887926, 889030, 851257, 867373, 867420, 851093, 870072, 887601, 885561, 871155, 871068, 887499, 867567, 850179, 851280, 876642, 899018, 861569, 882387, 898633, 897800, 0, 860288, 857779, 878570, 874016, 902988, 902006, 903127, 901418, 901418, 912190, 863501, 879867, 878895, 863605, 883799, 900162, 908965, 883661, 894700, 909774, 891038, 874549, 874718, 888710, 910820, 893631, 893498, 910853, 910997, 894556, 871726, 890684, 890886, 863747, 864684, 913100, 914638, 893380, 912272, 911203, 911476, 874878, 891076, 891169, 874548, 894669, 911029, 908083, 894763, 884778, 911230, 891130, 863835, 874847, 888140, 911339, 883942, 894896, 901421, 910927, 871876, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 879677, 873054, 894233, 910509, 908624, 893919, 894042, 910409, 889514, 874144, 874276, 888657, 910621, 894065, 894259, 909530, 910786, 894267, 872407, 890508, 879657, 912737, 912278, 911139, 927870, 906932, 906862, 868421, 884788, 883831, 868463, 888565, 904919, 902811, 888332, 888548, 903905, 885046, 868538, 868556, 882661, 904770, 888288, 887354, 880625, 880769, 880613, 890217, 890394, 891515, 890350, 900719, 891469, 892615, 891429, 901852, 892692, 890505, 900712, 891295, 892481, 880251, 901699, 891345, 892453, 891322, 900608, 891379, 893585, 891452, 900789, 891407, 892569, 890917, 900700, 892370, 880286, 892568, 968341, 900701, 892464, 881698, 865655, 891410, 892599, 901814, 0, 0, 0, 0, 978797, 1029306, 1011559, 1020803, 1049109, 1048276, 1032994, 1033054, 1049732, 1028309, 1012632, 1013140, 1028513, 1050252, 1033937, 1015444, 425774, 425624, 434960, 434875, 435859, 508843, 407086, 396130, 396130, 396130, 0, 0, 392204, 426502, 417151, 517984, 425797, 447891, 426584, 451121, 459144, 425993, 432809, 449262, 429047, 412523, 412391, 426976, 458059, 431472, 432258, 441931, 448103, 432539, 410979, 427059, 429397, 413011, 452751, 459233, 451548, 451382, 448278, 452170, 410337, 428411, 427552, 414277, 451330, 448123, 434420, 434640, 451531, 430849, 414323, 413484, 429218, 451188, 434372, 434496, 450622, 451022, 432868, 411094, 431008, 430737, 430996, 414339, 452616, 441960, 431587, 442521, 440512, 441791, 415872, 420069, 418788, 429679, 434109, 424339, 449702, 434513, 0, 0, 0, 0, 0, 396532, 449276, 423741, 433519, 439429, 428121],
+
+    },]
+    };
+    echart4.setOption(option)
+	window.onresize = echart4.resize;
+if (option && typeof option === "object") {
+    echart4.setOption(option, true);
+    window.onresize = echart4.resize;
+}
+</script>
+
+
