@@ -19,7 +19,7 @@ reload(sys)
 #sys.setdefaultencoding('utf8')
 #HOST_IP = "60.205.204.64"
 HOST_IP = "0.0.0.0"
-PORT = 5001
+PORT = 5002
 
 app = Flask(__name__)
 

@@ -1,0 +1,1793 @@
+<!--当前所用版本，2020.7.16-->
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- 使用IE8以上的渲染 -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>数据分析结果</title>
+    <style type="text/css">
+    html {font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;}
+    body {margin: 10px;}
+    table {border-collapse: collapse; border-spacing: 0;}
+    td,th {padding: 0;}
+    .pure-table {width:90%; border-collapse: collapse; border-spacing: 0; padding-bottom:30px; margin: 0px auto; empty-cells: show; border: 1px solid #cbcbcb;}
+    .pure-table caption {color: #000; font: italic 85%/1 arial,sans-serif; padding: 1em 0; text-align: center}
+    .pure-table td{border-left: 1px solid #cbcbcb; font-size: inherit; text-align:center; vertical-align:middle; margin: 0; overflow: visible; padding: .5em 1em}
+    .pure-table th {border-left: 1.5px solid white; border-bottom: 1.5px solid white; font-size: inherit; text-align:center; vertical-align:middle; margin: 0; overflow: visible; padding: .5em 1em}
+    .pure-table thead {background-color: #e0e0e0; color: #000; text-align: left; vertical-align: bottom}
+    .pure-table td {background-color: transparent;}
+    .ul_lstm{font-size:20px;}
+    .detections {display: flex; flex:1 1 100%; height: 56px;}
+    .detections svg{width: 24px; height: 24px; align-self: center; margin-right: 10px; border-radius: 50%; font-weight: bold}
+    </style>
+</head>
+<body>
+
+<!--	<HR style="FILTER: alpha(opacity=50,finishopacity=0,style=3)" width="100%" color=#e9e9e9 SIZE=2>-->
+	<div style='width: 100%;padding:20px 0 50px 0'>
+<!--		<div id='mal_url' style="width: 100%;height: 700px;"></div>-->
+		<HR style="FILTER: alpha(opacity=50,finishopacity=0,style=3)" padding-top="20px" width="100%" color=#e9e9e9 SIZE=2>
+		<h2 style='text-align:center; padding-top:30px;'>被控主机在2月15日内访问量最多的恶意域名（TOP40）</h2>
+		<table class="pure-table">
+		<thead>
+			<tr>
+				<th rowspan="2">#</th>
+				<th rowspan="2">恶意域名</th>
+                <th colspan="3" >权威平台检测结果</th>
+                <th rowspan="2">自身模型检测结果</th>
+            </tr>
+            <tr>
+				<th>virustotal</th>
+				<th>360</th>
+                <th>奇安信</th>
+			</tr>
+		</thead>
+			<tbody>
+            <tr>
+					<td>1</td>
+					<td>kxwpffor.info</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+                            </svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>2</td>
+					<td>rtwfjgsc.com</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>3</td>
+					<td>iexbtzgh.cc</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>4</td>
+					<td>xtrfo.net</td>
+					<td>
+						<div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>1 engines detected this URL</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>5</td>
+					<td>mcwvlye.ws</td>
+					<td>
+						<div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>2 engines detected this URL</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>6</td>
+					<td>nwwspi.info</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>7</td>
+					<td>rgxgdca.biz</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>8</td>
+					<td>umbgivkmek.ws</td>
+					<td>
+						<div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>2 engines detected this URL</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>9</td>
+					<td>gkgwjjy.cc</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>10</td>
+					<td>rltxdu.cn</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>11</td>
+					<td>tyivo.info</td>
+					<td>
+						<div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>1 engines detected this URL</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>12</td>
+					<td>rwdlpiptmp.cc</td>
+					<td>
+						<div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>3 engines detected this URL</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>13</td>
+					<td>amkmmiom.org</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: orange; fill: orange">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>可疑</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>14</td>
+					<td>gwdjpigz.net</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>15</td>
+					<td>gztjdujwjkg.org</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>16</td>
+					<td>ifoesoid.cc</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: orange; fill: orange">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>可疑</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>17</td>
+					<td>iopbc.info</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: orange; fill: orange">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>可疑</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>18</td>
+					<td>nmnvtfyj.com</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                 <tr>
+					<td>19</td>
+					<td>oyfamwfe.net</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>20</td>
+					<td>ozrud.com</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>21</td>
+					<td>pghowu.net</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: orange; fill: orange">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>可疑</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>22</td>
+					<td>pwvnrtipqti.com</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>23</td>
+					<td>rlrmm.ws</td>
+					<td>
+						<div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>2 engines detected this URL</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>24</td>
+					<td>skhpbjw.biz</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>25</td>
+					<td>upinxq.org</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: orange; fill: orange">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>可疑</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>26</td>
+					<td>vfwie.info</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>27</td>
+					<td>xrxklhfr.info</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>28</td>
+					<td>yqifuucez.org</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>29</td>
+					<td>zwstofxs.info</td>
+					<td>
+						<div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>1 engine detected this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>30</td>
+					<td>igszfv.net</td>
+					<td>
+						<div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>1 engine detected this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>31</td>
+					<td>jyncpjhox.com</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>32</td>
+					<td>kgtofngvfn.ws</td>
+					<td>
+						<div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>1 engine detected this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>33</td>
+					<td>kjlrweee.info</td>
+					<td>
+						<div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>1 engine detected this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>34</td>
+					<td>kzofbsp.org</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>35</td>
+					<td>levylc.cc</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>36</td>
+					<td>mbcvilt.cc</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: orange; fill: orange">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>可疑</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>37</td>
+					<td>mfagvjac.biz</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: orange; fill: orange">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>可疑</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>38</td>
+					<td>nfnhqd.cn</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>39</td>
+					<td>nlhjjwhba.info</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+                <tr>
+					<td>40</td>
+					<td>nlzqdpis.com</td>
+					<td>
+						<div class="detections" style="color: blue; fill: blue">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12,21.3c-4.9,0-8.8-4-8.8-8.8c0-4.9,4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8C20.8,17.4,16.9,21.3,12,21.3z M12,4.7   c-4.3,0-7.8,3.5-7.8,7.8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8C19.8,8.2,16.3,4.7,12,4.7z"></path>
+							    <path d="M10.4,15.9C10.4,15.9,10.4,15.9,10.4,15.9c-0.2,0-0.3-0.1-0.4-0.2l-2.6-3.3c-0.2-0.2-0.1-0.5,0.1-0.7  c0.2-0.2,0.5-0.1,0.7,0.1l2.2,2.8l5.2-6c0.2-0.2,0.5-0.2,0.7-0.1c0.2,0.2,0.2,0.5,0.1,0.7l-5.6,6.5C10.7,15.9,10.6,15.9,10.4,15.9z"></path>
+                            </svg>
+                            <p>No interesting sightings for this domain</p>
+						</div>
+					</td>
+					<td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意（70分）</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>恶意</p>
+						</div>
+                    </td>
+                    <td>
+                        <div class="detections" style="font-weight:bolder ;color: red; fill: red">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12.6,16.9h-1.3v-1.4l1.3,0V16.9z M11.4,14.3V7.6h1.3v6.8H11.4z">  </path>
+                                <path d="M12,21.1c-4.9,0-8.8-4-8.8-8.8s4-8.8,8.8-8.8c4.9,0,8.8,4,8.8,8.8S16.9,21.1,12,21.1z M12,4.4c-4.3,0-7.8,3.5-7.8,7.8
+        s3.5,7.8,7.8,7.8c4.3,0,7.8-3.5,7.8-7.8S16.3,4.4,12,4.4z"></path>
+							</svg>
+                            <p>危险</p>
+						</div>
+                    </td>
+				</tr>
+			</tbody>
+		</table>
+    </div>
+
+
+{#	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>#}
+{#    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>#}
+{#    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>#}
+{#    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>#}
+{#    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>#}
+{#    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>#}
+{#<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>#}
+{#<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>#}
+{#<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=o3qDkeQeqpLved3L2kVlHeFWhbv8sUv1&__ec_v__=20190126"></script>#}
+</body>
+</html>
