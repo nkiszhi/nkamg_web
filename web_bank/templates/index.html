@@ -1,0 +1,2001 @@
+<!--当前所用版本，2020.7.16-->
+<!DOCTYPE html>
+<html>
+<head>
+{#	<link rel="shortcut icon" href="#" />#}
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- 使用IE8以上的渲染 -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>数据分析结果</title>
+	<!--导入的为ECharts3的js中国民用航空华东地区空中交通管理局数据分析结果 -->
+    <style type="text/css">
+    html {font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;}
+    body {margin: 10px;}
+    table {border-collapse: collapse; border-spacing: 0;}
+    td,th {padding: 0;}
+    .pure-table {width:85%; border-collapse: collapse; border-spacing: 0; padding-bottom:30px; margin: 0px auto; empty-cells: show; border: 1px solid #cbcbcb;}
+    .pure-table caption {color: #000; font: italic 85%/1 arial,sans-serif; padding: 1em 0; text-align: center}
+    .pure-table td{border-left: 1px solid #cbcbcb; font-size: inherit; text-align:center; vertical-align:middle; margin: 0; overflow: visible; padding: .5em 1em}
+    .pure-table th {border-left: 1.5px solid white; border-bottom: 1.5px solid white; font-size: inherit; text-align:center; vertical-align:middle; margin: 0; overflow: visible; padding: .5em 1em}
+    .pure-table thead {background-color: #e0e0e0; color: #000; text-align: left; vertical-align: bottom}
+    .pure-table td {background-color: transparent;}
+    .ul_lstm{font-size:20px;}
+    .detections {display: flex; flex:1 1 100%; height: 56px;}
+    .detections svg{width: 24px; height: 24px; align-self: center; margin-right: 10px; margin-left:50px; border-radius: 50%; font-weight: bold}
+    </style>
+</head>
+<body>
+
+    <!--中国地图-->
+    <div id="china_map" style="width: 100%;height: 500px;"></div>
+	<HR style="FILTER: alpha(opacity=50,finishopacity=0,style=3)" width="100%" color=#e9e9e9 SIZE=2>
+    <!-- KNN算法-->
+    <div id="KNN" style="width: 100%;height: 600px;"></div>
+    <!-- PCA算法-->
+    <div id="PCA" style="width: 100%;height: 600px;"></div>
+    <!-- VAE算法-->
+    <div id="VAE" style="width: 100%;height: 600px;"></div>
+    <!-- LOF算法-->
+    <div id="LOF" style="width: 100%;height: 600px;"></div>
+    <!-- IForest算法-->
+    <div id="IForest" style="width: 100%;height: 600px;"></div>
+    <!-- AutoEncoder算法-->
+    <div id="AutoEncoder" style="width: 100%;height: 600px;"></div>
+    <!-- FeatureBagging算法-->
+    <div id="FeatureBagging" style="width: 100%;height: 600px;"></div>
+    <!-- ABOD算法-->
+    <div id="ABOD" style="width: 100%;height: 600px;"></div>
+    <!-- HBOS算法-->
+    <div id="HBOS" style="width: 100%;height: 600px;"></div>
+    <!-- CBLOF算法-->
+    <div id="CBLOF" style="width: 100%;height: 600px;"></div>
+    <!-- LODA算法-->
+    <div id="LODA" style="width: 100%;height: 600px;"></div>
+    <!-- MCD算法-->
+    <div id="MCD" style="width: 100%;height: 600px;"></div>
+
+<!--    &lt;!&ndash; knn算法&ndash;&gt;-->
+<!--    <div id="knn" style="width: 100%;height: 1000px;"></div>-->
+<!--    &lt;!&ndash; pca算法&ndash;&gt;-->
+<!--    <div id="pca" style="width: 100%;height: 1000px;"></div>-->
+<!--    &lt;!&ndash; LOF算法&ndash;&gt;-->
+<!--    <div id="lof" style="width: 100%;height: 1000px;"></div>-->
+<!--    &lt;!&ndash; VAE算法&ndash;&gt;-->
+<!--    <div id="vae" style="width: 100%;height: 1000px;"></div>-->
+<!--	&lt;!&ndash; HBOS算法&ndash;&gt;-->
+<!--    <div id="hbos" style="width: 100%;height: 1000px;"></div>-->
+
+
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=o3qDkeQeqpLved3L2kVlHeFWhbv8sUv1&__ec_v__=20190126"></script>
+</body>
+</html>
+
+<!--中国地图-->
+ <script type="text/javascript">
+var dom = document.getElementById("china_map");
+var china_map = echarts.init(dom);
+var app = {};
+option = null;
+
+var data = [
+    {name:'北京', value: 300},
+];
+
+var geoCoordMap = {
+    '北京':[116.46, 39.92],
+};
+
+var convertData = function (data) {
+    var res = [];
+    for (var i = 0; i < data.length; i++) {
+        var geoCoord = geoCoordMap[data[i].name];
+        if (geoCoord) {
+            res.push({
+                name: data[i].name,
+                value: geoCoord.concat(data[i].value)
+            });
+        }
+    }
+    return res;
+};
+
+option = {
+    backgroundColor: 'transparent',
+    title : {
+        text : '数据分析结果',
+        left : '3%',                    // 标题距离左侧边距
+        top : '3%',
+        textStyle : {
+            fontSize: 40,
+            color : 'white'
+        },
+
+    },
+    tooltip : {
+        textStyle:{fontSize:35},
+        formatter(params){
+           for(x in params){
+               return '北京';
+           }
+        }
+    },
+    bmap: {
+        center: [104.114129, 37.550339],
+        zoom: 5,
+        roam: true,
+        mapStyle: {
+            styleJson: [
+                    {
+                        "featureType": "water",
+                        "elementType": "all",
+                        "stylers": {
+                            "color": "#044161"
+                        }
+                    },
+                    {
+                        "featureType": "land",
+                        "elementType": "all",
+                        "stylers": {
+                            "color": "#004981"
+                        }
+                    },
+                    {
+                        "featureType": "boundary",
+                        "elementType": "geometry",
+                        "stylers": {
+                            "color": "#064f85"
+                        }
+                    },
+                    {
+                        "featureType": "railway",
+                        "elementType": "all",
+                        "stylers": {
+                            "visibility": "off"
+                        }
+                    },
+                    {
+                        "featureType": "highway",
+                        "elementType": "geometry",
+                        "stylers": {
+                            "color": "#004981"
+                        }
+                    },
+                    {
+                        "featureType": "highway",
+                        "elementType": "geometry.fill",
+                        "stylers": {
+                            "color": "#005b96",
+                            "lightness": 1
+                        }
+                    },
+                    {
+                        "featureType": "highway",
+                        "elementType": "labels",
+                        "stylers": {
+                            "visibility": "off"
+                        }
+                    },
+                    {
+                        "featureType": "arterial",
+                        "elementType": "geometry",
+                        "stylers": {
+                            "color": "#004981"
+                        }
+                    },
+                    {
+                        "featureType": "arterial",
+                        "elementType": "geometry.fill",
+                        "stylers": {
+                            "color": "#00508b"
+                        }
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "all",
+                        "stylers": {
+                            "visibility": "off"
+                        }
+                    },
+                    {
+                        "featureType": "green",
+                        "elementType": "all",
+                        "stylers": {
+                            "color": "#056197",
+                            "visibility": "off"
+                        }
+                    },
+                    {
+                        "featureType": "subway",
+                        "elementType": "all",
+                        "stylers": {
+                            "visibility": "off"
+                        }
+                    },
+                    {
+                        "featureType": "manmade",
+                        "elementType": "all",
+                        "stylers": {
+                            "visibility": "off"
+                        }
+                    },
+                    {
+                        "featureType": "local",
+                        "elementType": "all",
+                        "stylers": {
+                            "visibility": "off"
+                        }
+                    },
+                    {
+                        "featureType": "arterial",
+                        "elementType": "labels",
+                        "stylers": {
+                            "visibility": "off"
+                        }
+                    },
+                    {
+                        "featureType": "boundary",
+                        "elementType": "geometry.fill",
+                        "stylers": {
+                            "color": "#029fd4"
+                        }
+                    },
+                    {
+                        "featureType": "building",
+                        "elementType": "all",
+                        "stylers": {
+                            "color": "#1a5787"
+                        }
+                    },
+                    {
+                        "featureType": "label",
+                        "elementType": "all",
+                        "stylers": {
+                            "visibility": "off"
+                        }
+                    }
+            ]
+        }
+    },
+    series : [
+        {
+            name: 'pm2.5',
+            type: 'scatter',
+            coordinateSystem: 'bmap',
+            data: convertData(data),
+            encode: {
+                value: 2
+            },
+            symbolSize: function (val) {
+                return val[2] / 10;
+            },
+            label: {
+                formatter: '{b}',
+                position: 'right'
+            },
+            itemStyle: {
+                color: 'purple'
+            },
+            emphasis: {
+                label: {
+                    show: true
+                }
+            }
+        },
+        {
+            name: '北京',
+            type: 'effectScatter',
+            coordinateSystem: 'bmap',
+            data: convertData(data.sort(function (a, b) {
+                return b.value - a.value;
+            }).slice(0, 6)),
+            encode: {
+                value: 2
+            },
+            symbolSize: function (val) {
+                return val[2] / 10;
+            },
+            // showEffectOn: 'emphasis',
+            showEffectOn: 'render',
+            rippleEffect: {
+                brushType: 'stroke'
+            },
+            hoverAnimation: true,
+            label: {
+				textStyle:{
+                    fontSize:20,
+                },
+                formatter: '{b}',
+                position: 'right',
+                show: true
+            },
+            itemStyle: {
+                color: 'yellow',
+                shadowBlur: 10,
+                shadowColor: '#333'
+            },
+            zlevel: 1
+        },
+    ]
+};
+if (option && typeof option === "object") {
+    china_map.setOption(option, true);
+}
+</script>
+<!-- knn算法-->
+<script type="text/javascript">
+var dom = document.getElementById("KNN");
+var knn = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "KNN异常检测结果图",           // 标题文本
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            //left:'20%',
+            //top:'3%',
+            bottom: 'auto',
+            //height:"60%",
+        },
+		tooltip: {
+               // trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                },
+				textStyle:{fontSize:20},
+            },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: '商户号/购汇时间', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:20
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '110px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'正常商户',
+                    icon:'circle',
+                },
+                {
+                    name:'异常商户',
+                    icon:'circle',
+                }
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+
+        series: [
+            {
+                name:'正常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'异常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },
+        ]
+    };
+
+    knn.setOption(option)
+	window.onresize = knn.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_knn',
+            dataType: 'json',
+            success: function (res) {
+                knn.hideLoading();    //隐藏加载动画
+                knn.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'正常商户',
+                        data: res['normal'],
+                    },{
+                        name:'异常商户',
+                        data:res['abnormal']
+                    },
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- PCA算法-->
+<script type="text/javascript">
+var dom = document.getElementById("PCA");
+var pca = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "PCA异常检测结果图",           // 标题文本
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            //left:'20%',
+            //top:'3%',
+            bottom: 'auto',
+            //height:"60%",
+        },
+		tooltip: {
+               // trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                },
+				textStyle:{fontSize:20},
+            },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: '商户号/购汇时间', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:20
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '110px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'正常商户',
+                    icon:'circle',
+                },
+                {
+                    name:'异常商户',
+                    icon:'circle',
+                }
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+
+        series: [
+            {
+                name:'正常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'异常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },
+        ]
+    };
+
+    pca.setOption(option)
+	window.onresize = pca.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_pca',
+            dataType: 'json',
+            success: function (res) {
+                pca.hideLoading();    //隐藏加载动画
+                pca.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'正常商户',
+                        data: res['normal'],
+                    },{
+                        name:'异常商户',
+                        data:res['abnormal']
+                    },
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- VAE算法-->
+<script type="text/javascript">
+var dom = document.getElementById("VAE");
+var vae = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "VAE异常检测结果图",           // 标题文本
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            //left:'20%',
+            //top:'3%',
+            bottom: 'auto',
+            //height:"60%",
+        },
+		tooltip: {
+               // trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                },
+				textStyle:{fontSize:20},
+            },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: '商户号/购汇时间', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:20
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '110px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'正常商户',
+                    icon:'circle',
+                },
+                {
+                    name:'异常商户',
+                    icon:'circle',
+                }
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+
+        series: [
+            {
+                name:'正常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'异常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },
+        ]
+    };
+
+    vae.setOption(option)
+	window.onresize = vae.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_vae',
+            dataType: 'json',
+            success: function (res) {
+                vae.hideLoading();    //隐藏加载动画
+                vae.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'正常商户',
+                        data: res['normal'],
+                    },{
+                        name:'异常商户',
+                        data:res['abnormal']
+                    },
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- LOF算法-->
+<script type="text/javascript">
+var dom = document.getElementById('LOF');
+var lof = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "LOF异常检测结果图",           // 标题文本
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            //left:'20%',
+            //top:'3%',
+            bottom: 'auto',
+            //height:"60%",
+        },
+		tooltip: {
+               // trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                },
+				textStyle:{fontSize:20},
+            },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: '商户号/购汇时间', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:20
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '110px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'正常商户',
+                    icon:'circle',
+                },
+                {
+                    name:'异常商户',
+                    icon:'circle',
+                }
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+
+        series: [
+            {
+                name:'正常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'异常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },
+        ]
+    };
+
+    lof.setOption(option)
+	window.onresize = lof.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_lof',
+            dataType: 'json',
+            success: function (res) {
+                lof.hideLoading();    //隐藏加载动画
+                lof.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'正常商户',
+                        data: res['normal'],
+                    },{
+                        name:'异常商户',
+                        data:res['abnormal']
+                    },
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- IForest算法-->
+<script type="text/javascript">
+var dom = document.getElementById('IForest');
+var iforest = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "IForest异常检测结果图",           // 标题文本
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            //left:'20%',
+            //top:'3%',
+            bottom: 'auto',
+            //height:"60%",
+        },
+		tooltip: {
+               // trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                },
+				textStyle:{fontSize:20},
+            },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: '商户号/购汇时间', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:20
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '110px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'正常商户',
+                    icon:'circle',
+                },
+                {
+                    name:'异常商户',
+                    icon:'circle',
+                }
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+
+        series: [
+            {
+                name:'正常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'异常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },
+        ]
+    };
+
+    iforest.setOption(option)
+	window.onresize = iforest.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_iforest',
+            dataType: 'json',
+            success: function (res) {
+                iforest.hideLoading();    //隐藏加载动画
+                iforest.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'正常商户',
+                        data: res['normal'],
+                    },{
+                        name:'异常商户',
+                        data:res['abnormal']
+                    },
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- AutoEncoder算法-->
+<script type="text/javascript">
+var dom = document.getElementById('AutoEncoder');
+var autoencoder = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "AutoEncoder异常检测结果图",           // 标题文本
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            //left:'20%',
+            //top:'3%',
+            bottom: 'auto',
+            //height:"60%",
+        },
+		tooltip: {
+               // trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                },
+				textStyle:{fontSize:20},
+            },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: '商户号/购汇时间', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:20
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '110px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'正常商户',
+                    icon:'circle',
+                },
+                {
+                    name:'异常商户',
+                    icon:'circle',
+                }
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+
+        series: [
+            {
+                name:'正常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'异常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },
+        ]
+    };
+
+    autoencoder.setOption(option)
+	window.onresize = autoencoder.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_autoencoder',
+            dataType: 'json',
+            success: function (res) {
+                autoencoder.hideLoading();    //隐藏加载动画
+                autoencoder.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'正常商户',
+                        data: res['normal'],
+                    },{
+                        name:'异常商户',
+                        data:res['abnormal']
+                    },
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- FeatureBagging算法-->
+<script type="text/javascript">
+var dom = document.getElementById('FeatureBagging');
+var feature = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "FeatureBagging异常检测结果图",           // 标题文本
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            //left:'20%',
+            //top:'3%',
+            bottom: 'auto',
+            //height:"60%",
+        },
+		tooltip: {
+               // trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                },
+				textStyle:{fontSize:20},
+            },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: '商户号/购汇时间', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:20
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '110px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'正常商户',
+                    icon:'circle',
+                },
+                {
+                    name:'异常商户',
+                    icon:'circle',
+                }
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+
+        series: [
+            {
+                name:'正常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'异常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },
+        ]
+    };
+
+    feature.setOption(option)
+	window.onresize = feature.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_feature',
+            dataType: 'json',
+            success: function (res) {
+                feature.hideLoading();    //隐藏加载动画
+                feature.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'正常商户',
+                        data: res['normal'],
+                    },{
+                        name:'异常商户',
+                        data:res['abnormal']
+                    },
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- ABOD算法-->
+<script type="text/javascript">
+var dom = document.getElementById('ABOD');
+var abod = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "ABOD异常检测结果图",           // 标题文本
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            //left:'20%',
+            //top:'3%',
+            bottom: 'auto',
+            //height:"60%",
+        },
+		tooltip: {
+               // trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                },
+				textStyle:{fontSize:20},
+            },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: '商户号/购汇时间', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:20
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '110px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'正常商户',
+                    icon:'circle',
+                },
+                {
+                    name:'异常商户',
+                    icon:'circle',
+                }
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+
+        series: [
+            {
+                name:'正常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'异常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },
+        ]
+    };
+
+    abod.setOption(option)
+	window.onresize = abod.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_abod',
+            dataType: 'json',
+            success: function (res) {
+                abod.hideLoading();    //隐藏加载动画
+                abod.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'正常商户',
+                        data: res['normal'],
+                    },{
+                        name:'异常商户',
+                        data:res['abnormal']
+                    },
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- HBOS算法-->
+<script type="text/javascript">
+var dom = document.getElementById('HBOS');
+var hbos = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "HBOS异常检测结果图",           // 标题文本
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            //left:'20%',
+            //top:'3%',
+            bottom: 'auto',
+            //height:"60%",
+        },
+		tooltip: {
+               // trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                },
+				textStyle:{fontSize:20},
+            },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: '商户号/购汇时间', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:20
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '110px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'正常商户',
+                    icon:'circle',
+                },
+                {
+                    name:'异常商户',
+                    icon:'circle',
+                }
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+
+        series: [
+            {
+                name:'正常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'异常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },
+        ]
+    };
+
+    hbos.setOption(option)
+	window.onresize = hbos.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_hbos',
+            dataType: 'json',
+            success: function (res) {
+                hbos.hideLoading();    //隐藏加载动画
+                hbos.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'正常商户',
+                        data: res['normal'],
+                    },{
+                        name:'异常商户',
+                        data:res['abnormal']
+                    },
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- CBLOF算法-->
+<script type="text/javascript">
+var dom = document.getElementById('CBLOF');
+var cblof = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "CBLOF异常检测结果图",           // 标题文本
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            //left:'20%',
+            //top:'3%',
+            bottom: 'auto',
+            //height:"60%",
+        },
+		tooltip: {
+               // trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                },
+				textStyle:{fontSize:20},
+            },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: '商户号/购汇时间', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:20
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '110px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'正常商户',
+                    icon:'circle',
+                },
+                {
+                    name:'异常商户',
+                    icon:'circle',
+                }
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+
+        series: [
+            {
+                name:'正常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'异常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },
+        ]
+    };
+
+    cblof.setOption(option)
+	window.onresize = cblof.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_cblof',
+            dataType: 'json',
+            success: function (res) {
+                cblof.hideLoading();    //隐藏加载动画
+                cblof.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'正常商户',
+                        data: res['normal'],
+                    },{
+                        name:'异常商户',
+                        data:res['abnormal']
+                    },
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- LODA算法-->
+<script type="text/javascript">
+var dom = document.getElementById('LODA');
+var loda_al = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "LODA异常检测结果图",           // 标题文本
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            //left:'20%',
+            //top:'3%',
+            bottom: 'auto',
+            //height:"60%",
+        },
+		tooltip: {
+               // trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                },
+				textStyle:{fontSize:20},
+            },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: '商户号/购汇时间', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:20
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '110px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'正常商户',
+                    icon:'circle',
+                },
+                {
+                    name:'异常商户',
+                    icon:'circle',
+                }
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+
+        series: [
+            {
+                name:'正常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'异常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },
+        ]
+    };
+
+    loda_al.setOption(option)
+	window.onresize = loda_al.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_loda_al',
+            dataType: 'json',
+            success: function (res) {
+                loda_al.hideLoading();    //隐藏加载动画
+                loda_al.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'正常商户',
+                        data: res['normal'],
+                    },{
+                        name:'异常商户',
+                        data:res['abnormal']
+                    },
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
+<!-- MCD算法-->
+<script type="text/javascript">
+var dom = document.getElementById('MCD');
+var mcd = echarts.init(dom);
+var app = {};
+var symbolSize = 2.5;
+var option = {
+        title: {                    // 图表标题
+            text: "MCD异常检测结果图",           // 标题文本
+            left: '3%',                    // 标题距离左侧边距
+            top: '3%',                     // 标题距顶部边距
+            textStyle: {                       // 标题样式
+                color: '#000',                     // 标题字体颜色
+                fontSize: '40',                    // 标题字体大小
+            },
+        },
+        grid3D: {
+            //left:'20%',
+            //top:'3%',
+            bottom: 'auto',
+            //height:"60%",
+        },
+		tooltip: {
+               // trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                },
+				textStyle:{fontSize:20},
+            },
+        xAxis3D: {
+           // type: 'category'
+        },
+        yAxis3D: {},
+        zAxis3D: {},
+        dataset: {
+            dimensions: [
+                '0',
+                '1',
+                '2',
+                {name: '商户号/购汇时间', type: 'ordinal'}
+            ],
+        },
+        legend:{
+            textStyle:{
+                fontSize:20
+            },
+            orient: 'vertical',  //垂直布局
+            x: '3%',
+            y: '110px',  //垂直布局的位置  y: 'center'
+            data:[
+                {
+                    name:'正常商户',
+                    icon:'circle',
+                },
+                {
+                    name:'异常商户',
+                    icon:'circle',
+                }
+
+            ],
+            formatter:function(name){
+                return name;
+            },
+        },
+
+        series: [
+            {
+                name:'正常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'blue',
+                }
+            },
+            {
+                name:'异常商户',
+                type: 'scatter3D',
+                symbolSize: 8,
+                encode: {
+                    x: '0',
+                    y: '1',
+                    z: '2',
+                    tooltip: [0,1,2,3],
+
+                },
+                data: [],
+                itemStyle:{
+                    opacity:0.2,
+                    color: 'red',
+                }
+            },
+        ]
+    };
+
+    mcd.setOption(option)
+	window.onresize = mcd.resize;
+    $(function () {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '/get_mcd',
+            dataType: 'json',
+            success: function (res) {
+                mcd.hideLoading();    //隐藏加载动画
+                mcd.setOption({        //加载数据图表
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:'正常商户',
+                        data: res['normal'],
+                    },{
+                        name:'异常商户',
+                        data:res['abnormal']
+                    },
+                    ]
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
+
+</script>
